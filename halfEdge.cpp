@@ -9,6 +9,7 @@ HalfEdge::HalfEdge(Vertex* _start, Vertex* _end, int _face)
     this->face = _face;
 
     start->halfEdges.push_back(this);
+    end->incidentHalfEdges.push_back(this);
 }
 
 void HalfEdge::PrintStart()

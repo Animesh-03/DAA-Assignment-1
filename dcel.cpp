@@ -7,6 +7,11 @@ int DCEL::getAvailableFace()
     return 1+*(--faces.end());
 }
 
+DCEL::DCEL()
+{
+
+}
+
 HalfEdge* DCEL::getEdge(Vertex* _start, Vertex* _end)
 {
     for(auto &x:_start->halfEdges)
@@ -64,9 +69,14 @@ HalfEdge* DCEL::FindHalfEdgeWithFace(int face)
     return NULL;
 }
 
-void DCEL::SplitFace(Vertex* start, Vertex* end, int face)
+int DCEL::SplitFace(Vertex* start, Vertex* end, int face)
 {
     // Add a full edge between start and end vertices
+    auto test = start->FindNextVertexEdge(end);
+    if(test != NULL)
+    {
+        return test->face;
+    }
     int av_face = getAvailableFace();
     generateFace();
     HalfEdge* startEdge = AddFullEdge(start, end,av_face);
@@ -81,7 +91,7 @@ void DCEL::SplitFace(Vertex* start, Vertex* end, int face)
         current = current->Next(face);
     } while(current->end != startEdge->start);
     current->face = startEdge->face;
-
+    return startEdge->face;
     // Increase the number of faces
 }
 
@@ -97,7 +107,9 @@ void DCEL::MergeFace(Vertex* start, Vertex*end)
 
     // Delete the edges between start and end vertices for the given face
     start->DeleteEdge(e);
+    start->DeleteIncidentEdge(e1);
     end->DeleteEdge(e1);
+    start->DeleteIncidentEdge(e);
 
     // Reassign the faces after the merge
     HalfEdge* startEdge = start->FindHalfEdgeWithFace(twinFace);

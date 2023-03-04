@@ -18,7 +18,7 @@ class Vertex {
 
         /// @brief Stores all the half edges that originate from this vertex
         std::vector<HalfEdge*> halfEdges;
-
+        std::vector<HalfEdge*> incidentHalfEdges;
         /// @brief The constructor takes in the co-ordinates of the vertex
         Vertex(double _x, double _y);
 
@@ -29,7 +29,11 @@ class Vertex {
         /// @param The face number whose edge is to be found
         /// @returns Half Edge which is part of the given face
         HalfEdge* FindHalfEdgeWithFace(int face);
-
+        void DeleteIncidentEdge(HalfEdge* halfEdge);
+        Vertex* next(int face);
+        Vertex* prev(int face);
+        HalfEdge* FindIncidentHalfEdgeWithFace(int face);
+        HalfEdge* FindNextVertexEdge(Vertex* v);
         /// @brief Deletes the given half edge
         /// @param The half edge to be deleted
         void DeleteEdge(HalfEdge* halfEdge);

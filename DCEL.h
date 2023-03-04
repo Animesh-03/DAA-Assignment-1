@@ -24,6 +24,7 @@ class DCEL {
         /// @brief DCEL Constructor takes in all the vertices of the polygon in clockwise order
         /// @param _vertices Array contains vertices in clockwise order
         DCEL(std::vector<Vertex*> _vertices);
+        DCEL();
 
         /// @brief Adds a half edge and its twin on the vertices specified
         /// @param _start One of the vertices
@@ -43,7 +44,7 @@ class DCEL {
         /// @param start The start vertex
         /// @param end The end vertex
         /// @param face The face number that is to be split
-        void SplitFace(Vertex* start, Vertex* end, int face);
+        int SplitFace(Vertex* start, Vertex* end, int face);
 
         /// @brief Merges a face by deleting a full edge between start and end vertices
         /// @param start The start vertex
