@@ -58,6 +58,7 @@ class Line
     }
 };
 
+/// @brief Class handles the decomposition of a polygon and minimising the edges by merging faces
 class PolygonDecomp
 {
     public:
@@ -68,6 +69,8 @@ class PolygonDecomp
     /// @brief Set of all vertices in the polygon
     set<Vertex*> P;
     
+    /// @brief Constructs the polygon that is to be decomposed
+    /// @param v The vertices of the polygon to be decomposed
     PolygonDecomp(vector<Vertex*> v)
     {
         dcel=DCEL(v);
@@ -77,6 +80,9 @@ class PolygonDecomp
         }
     }
 
+    /// @brief Returns the centroid of the given polygon
+    /// @param polygon The vertices of the polygon
+    /// @return The centroid of the polygon
     static Vertex* GetCentroid(vector<Vertex*> &polygon)
     {
         double sumx = 0,sumy = 0;
@@ -90,6 +96,10 @@ class PolygonDecomp
         return new Vertex(sumx,sumy);
     }
 
+    /// @brief Determines if a vertex is inside the current polygon
+    /// @param v The point that is to be determined
+    /// @param polygon The current polygon's vertices
+    /// @returns True is v is inside polygon else false
     static bool VertexInside(Vertex* v,vector<Vertex*> &polygon)
     {
         auto centroid = GetCentroid(polygon);
@@ -108,6 +118,11 @@ class PolygonDecomp
         return true;
     }
 
+    /// @brief Cross Product between 3 points
+    /// @param A Point 1
+    /// @param B Point 2
+    /// @param C Point 3
+    /// @return The cross product between A B and C
     double CrossProduct(Vertex* A,Vertex* B,Vertex* C)
     {
         double X1 = (A->x - B->x);
@@ -120,12 +135,19 @@ class PolygonDecomp
         return (X1 * Y2 - Y1 * X2);
     }
 
+    /// @brief Determines if b is notch
+    /// @param a Vertex 1
+    /// @param b Vertex 2
+    /// @param c Vertex 3
+    /// @return True is b is a notch else false
     bool IsNotch(Vertex* a,Vertex* b,Vertex* c)
     {
         double d = CrossProduct(a,b,c);
         return d<0;
     }
 
+    /// @brief Generates all the notches in the current polygon
+    /// @param face The face of the polygon
     void GenerateNotches(int face)
     {
         vector<Vertex*> notches;
@@ -153,11 +175,16 @@ class PolygonDecomp
         return c;
     }
 
+    /// @brief Determines if a vertex v is inside a rectangle
+    /// @param v Point to be determined
+    /// @return True if v is inside rectangle else false
     bool InsideRect(double xmin,double xmax,double ymin,double ymax,Vertex* v)
     {
         return v->x<=xmax && v->x>=xmin && v->y<=ymax && v->y>=ymin;
     }
 
+    /// @brief Decomposes the polygon into multiple convex polygons
+    /// @param p Decomposition process starts from this
     void Decompose(Vertex* p)
     {
         vector<Vertex*> L;
@@ -227,18 +254,13 @@ class PolygonDecomp
         }
     }
 
+    /// @brief Merges redundant polygons to minimise the edges
     void MergePolygons()
     {
         for(int i = 0; i < dcel.diagonals.size(); i += 2)
         {
             Vertex* start = dcel.diagonals[i]->start;
-
-            // Vertex* v1Next = v1->next(dcel.diagonals[i]->twin->face);
-            // Vertex* v1Prev = v1->prev(dcel.diagonals[i]->face);
-
             Vertex* end = dcel.diagonals[i]->end;
-            // Vertex* v2Next = v1->next(dcel.diagonals[i+1]->twin->face);
-            // Vertex* v2Prev = v1->prev(dcel.diagonals[i+1]->face);
 
             int startFace = dcel.diagonals[i]->face, endFace = dcel.diagonals[i]->twin->face;
 
@@ -307,6 +329,15 @@ vector<pair<int,int>> v = {
     {389, 141},
     {655, 147},
     {753, 269},
+vector<Vertex*> interpret(vector<pair<int,int>> &v)
+{
+    vector<Vertex*> ret;
+    for(auto &x:v)
+    {
+        ret.push_back(new Vertex(x.first,x.second));
+    }
+    return ret;
+}
     {884, 173},
     {998, 148},
     {827, 83},
@@ -323,16 +354,6 @@ vector<pair<int,int>> v = {
    {42, 228},
    {94, 291},
 };
-
-vector<Vertex*> interpret(vector<pair<int,int>> &v)
-{
-    vector<Vertex*> ret;
-    for(auto &x:v)
-    {
-        ret.push_back(new Vertex(x.first,x.second));
-    }
-    return ret;
-}
 
 int main()
 {
@@ -354,6 +375,8 @@ int main()
     }
 
     PolygonDecomp p(verts);
+    p.GenerateNotches(0);
+
     p.Decompose(verts[0]);
 
     p.PrintPolygons(fp1);
