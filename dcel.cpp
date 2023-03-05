@@ -118,17 +118,19 @@ void DCEL::MergeFace(Vertex* start, Vertex*end)
     end->DeleteEdge(e1);
     start->DeleteIncidentEdge(e);
 
-    remove(diagonals.begin(), diagonals.end(), e);
-    remove(diagonals.begin(), diagonals.end(), e1);
+    // remove(diagonals.begin(), diagonals.end(), e);
+    // remove(diagonals.begin(), diagonals.end(), e1);
 
     // Reassign the faces after the merge
     HalfEdge* startEdge = start->FindHalfEdgeWithFace(twinFace);
     HalfEdge* current = startEdge;
+    Vertex* temp;
     do
     {
+        temp = current->end;
         current->face = face;
-        current = current->Next(twinFace);
-    } while(current->start != end);
+        current = temp->FindHalfEdgeWithFace(twinFace);
+    } while(temp != end);
 
     // Reduce the number of faces by one
     faces.erase(twinFace);
