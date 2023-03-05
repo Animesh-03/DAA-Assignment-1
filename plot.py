@@ -41,7 +41,6 @@ def getCentroid(a):
     sumy/=n
     return (sumx,sumy)
 
-print(temp[25])
 for i, polygon in enumerate(convex_polygons):
     x_coords = [v[0] for v in polygon]
     y_coords = [v[1] for v in polygon]
