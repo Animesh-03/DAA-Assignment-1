@@ -35,8 +35,18 @@ class DCEL {
         /// @param _end Another vertex
         /// @return Returns the half edge created between start -> end
         HalfEdge* AddFullEdge(Vertex* _start, Vertex* _end,int _face);
+
+        /// @brief Adds a face to the set
         void generateFace();
+
+        /// @brief Gets the last face
+        /// @return The last face added to set
         int getAvailableFace();
+
+        /// @brief Gets the edge between the two vertices
+        /// @param _start start vertex
+        /// @param _end end vertex
+        /// @return The edge between the start and end vertices
         HalfEdge* getEdge(Vertex* _start, Vertex* _end);
         int lastFace = 0;
         /// @brief Searches for the first half edge that is a part of the face supplied
@@ -55,12 +65,13 @@ class DCEL {
         /// @param end The end vertex
         /// @param face The face that is to be merged
         void MergeFace(Vertex* start, Vertex*end);
-
-        void TryRemoveDiagonal(HalfEdge* diagonal);
-
+       
         /// @brief Traverses the given face
         /// @param face The face that is to be traversed
         void Traverse(int face, std::fstream &fp);
+
+        /// @brief Traverses the given face
+        /// @param face The face that is to be traversed
         void TraverseFace(int face);
 
         void PrintDiagonals();

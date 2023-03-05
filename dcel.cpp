@@ -176,19 +176,6 @@ void DCEL::TraverseFace(int face)
     std::cout << std::endl;
 }
 
-void DCEL::TryRemoveDiagonal(HalfEdge* diagonal)
-{
-    Vertex* v = diagonal->start;
-    Vertex* vNext = v->next(diagonal->twin->face);
-    Vertex* vPrev = v->prev(diagonal->face);
-
-    vPrev->Print();
-    std::cout << "-->";
-    v->Print();
-    std::cout << "-->";
-    vNext->Print();
-}
-
 void DCEL::PrintDiagonals()
 {
     std::cout << "Diagonals:" << std::endl;

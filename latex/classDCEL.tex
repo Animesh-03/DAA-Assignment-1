@@ -1,0 +1,225 @@
+\hypertarget{classDCEL}{}\doxysection{DCEL Class Reference}
+\label{classDCEL}\index{DCEL@{DCEL}}
+
+
+A Doubly-\/\+Connected-\/\+Edge-\/\+List which is used to traverse the polygon in O(n) time complexity.  
+
+
+
+
+{\ttfamily \#include $<$DCEL.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDCEL_a3aa27186c8c531a9ec406c7501309930}{DCEL}} (std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \+\_\+vertices)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDCEL}{DCEL}} Constructor takes in all the vertices of the polygon in clockwise order. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ \mbox{\hyperlink{classDCEL_ad72d5f39a5deb08b54a720fb3589bc21}{Add\+Full\+Edge}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$\+\_\+start, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$\+\_\+end, int \+\_\+face)
+\begin{DoxyCompactList}\small\item\em Adds a half edge and its twin on the vertices specified. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_abd4c627a6c6d3673e15121b4178c68af}\label{classDCEL_abd4c627a6c6d3673e15121b4178c68af}} 
+void \mbox{\hyperlink{classDCEL_abd4c627a6c6d3673e15121b4178c68af}{generate\+Face}} ()
+\begin{DoxyCompactList}\small\item\em Adds a face to the set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDCEL_ac50e0dab66411bade211ef346ef79770}{get\+Available\+Face}} ()
+\begin{DoxyCompactList}\small\item\em Gets the last face. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ \mbox{\hyperlink{classDCEL_a9491a561b81eb8448d905fa12403a50c}{get\+Edge}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$\+\_\+start, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Gets the edge between the two vertices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ \mbox{\hyperlink{classDCEL_ab4004513328b4a3d5d494ced9a931442}{Find\+Half\+Edge\+With\+Face}} (int face)
+\begin{DoxyCompactList}\small\item\em Searches for the first half edge that is a part of the face supplied. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDCEL_aca97e099023e961e1ee14f6d1b17f3cf}{Split\+Face}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$start, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$end, int face)
+\begin{DoxyCompactList}\small\item\em Splits a face between two vertices by adding a full edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDCEL_a7c7dcb35ff231eac6901557c1677076c}{Merge\+Face}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$start, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$end)
+\begin{DoxyCompactList}\small\item\em Merges a face by deleting a full edge between start and end vertices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDCEL_a13e6cad29c2e9f9d03693c660b780912}{Traverse}} (int face, std\+::fstream \&fp)
+\begin{DoxyCompactList}\small\item\em Traverses the given face. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDCEL_ac4443007e21a9bdb6df5195eb2f34530}{Traverse\+Face}} (int face)
+\begin{DoxyCompactList}\small\item\em Traverses the given face. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_a0f592533a7c9c49f64666dc544b60426}\label{classDCEL_a0f592533a7c9c49f64666dc544b60426}} 
+void {\bfseries Print\+Diagonals} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDCEL_a6a845152a5185fdd13dcd07ec3b41dc1}\label{classDCEL_a6a845152a5185fdd13dcd07ec3b41dc1}} 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classDCEL_a6a845152a5185fdd13dcd07ec3b41dc1}{vertices}}
+\begin{DoxyCompactList}\small\item\em Stores all vertices of the polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_a82dd413825a24b8975e3e901971f2629}\label{classDCEL_a82dd413825a24b8975e3e901971f2629}} 
+std\+::vector$<$ \mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ $>$ \mbox{\hyperlink{classDCEL_a82dd413825a24b8975e3e901971f2629}{edges}}
+\begin{DoxyCompactList}\small\item\em Stores all edges of the polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_a199ac485b615f0ae9766dc8c2054fe77}\label{classDCEL_a199ac485b615f0ae9766dc8c2054fe77}} 
+std\+::vector$<$ \mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ $>$ \mbox{\hyperlink{classDCEL_a199ac485b615f0ae9766dc8c2054fe77}{diagonals}}
+\begin{DoxyCompactList}\small\item\em Stores only the diagonals of the polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_a80d851289d2fa2fa27098aa7cf124b51}\label{classDCEL_a80d851289d2fa2fa27098aa7cf124b51}} 
+std\+::set$<$ int $>$ \mbox{\hyperlink{classDCEL_a80d851289d2fa2fa27098aa7cf124b51}{faces}}
+\begin{DoxyCompactList}\small\item\em Stores the total number of faces in the polygon, which also corresponds to the number of convex polygons after decompostion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDCEL_aeefc2550009588cdf70c547c41cc7568}\label{classDCEL_aeefc2550009588cdf70c547c41cc7568}} 
+int {\bfseries last\+Face} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Doubly-\/\+Connected-\/\+Edge-\/\+List which is used to traverse the polygon in O(n) time complexity. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDCEL_a3aa27186c8c531a9ec406c7501309930}\label{classDCEL_a3aa27186c8c531a9ec406c7501309930}} 
+\index{DCEL@{DCEL}!DCEL@{DCEL}}
+\index{DCEL@{DCEL}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{DCEL()}{DCEL()}}
+{\footnotesize\ttfamily DCEL\+::\+DCEL (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$}]{\+\_\+vertices }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classDCEL}{DCEL}} Constructor takes in all the vertices of the polygon in clockwise order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vertices} & Array contains vertices in clockwise order \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDCEL_ad72d5f39a5deb08b54a720fb3589bc21}\label{classDCEL_ad72d5f39a5deb08b54a720fb3589bc21}} 
+\index{DCEL@{DCEL}!AddFullEdge@{AddFullEdge}}
+\index{AddFullEdge@{AddFullEdge}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{AddFullEdge()}{AddFullEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ DCEL\+::\+Add\+Full\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{\+\_\+start,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{\+\_\+end,  }\item[{int}]{\+\_\+face }\end{DoxyParamCaption})}
+
+
+
+Adds a half edge and its twin on the vertices specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+start} & One of the vertices \\
+\hline
+{\em \+\_\+end} & Another vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the half edge created between start -\/$>$ end 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDCEL_ab4004513328b4a3d5d494ced9a931442}\label{classDCEL_ab4004513328b4a3d5d494ced9a931442}} 
+\index{DCEL@{DCEL}!FindHalfEdgeWithFace@{FindHalfEdgeWithFace}}
+\index{FindHalfEdgeWithFace@{FindHalfEdgeWithFace}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{FindHalfEdgeWithFace()}{FindHalfEdgeWithFace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ DCEL\+::\+Find\+Half\+Edge\+With\+Face (\begin{DoxyParamCaption}\item[{int}]{face }\end{DoxyParamCaption})}
+
+
+
+Searches for the first half edge that is a part of the face supplied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & The face number whose edge is to be found \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The edge which is a part of the face 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDCEL_ac50e0dab66411bade211ef346ef79770}\label{classDCEL_ac50e0dab66411bade211ef346ef79770}} 
+\index{DCEL@{DCEL}!getAvailableFace@{getAvailableFace}}
+\index{getAvailableFace@{getAvailableFace}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{getAvailableFace()}{getAvailableFace()}}
+{\footnotesize\ttfamily int DCEL\+::get\+Available\+Face (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the last face. 
+
+\begin{DoxyReturn}{Returns}
+The last face added to set 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDCEL_a9491a561b81eb8448d905fa12403a50c}\label{classDCEL_a9491a561b81eb8448d905fa12403a50c}} 
+\index{DCEL@{DCEL}!getEdge@{getEdge}}
+\index{getEdge@{getEdge}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{getEdge()}{getEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHalfEdge}{Half\+Edge}} $\ast$ DCEL\+::get\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{\+\_\+start,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{\+\_\+end }\end{DoxyParamCaption})}
+
+
+
+Gets the edge between the two vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+start} & start vertex \\
+\hline
+{\em \+\_\+end} & end vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The edge between the start and end vertices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDCEL_a7c7dcb35ff231eac6901557c1677076c}\label{classDCEL_a7c7dcb35ff231eac6901557c1677076c}} 
+\index{DCEL@{DCEL}!MergeFace@{MergeFace}}
+\index{MergeFace@{MergeFace}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{MergeFace()}{MergeFace()}}
+{\footnotesize\ttfamily void DCEL\+::\+Merge\+Face (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{start,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{end }\end{DoxyParamCaption})}
+
+
+
+Merges a face by deleting a full edge between start and end vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The start vertex \\
+\hline
+{\em end} & The end vertex \\
+\hline
+{\em face} & The face that is to be merged \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDCEL_aca97e099023e961e1ee14f6d1b17f3cf}\label{classDCEL_aca97e099023e961e1ee14f6d1b17f3cf}} 
+\index{DCEL@{DCEL}!SplitFace@{SplitFace}}
+\index{SplitFace@{SplitFace}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{SplitFace()}{SplitFace()}}
+{\footnotesize\ttfamily int DCEL\+::\+Split\+Face (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{start,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{end,  }\item[{int}]{face }\end{DoxyParamCaption})}
+
+
+
+Splits a face between two vertices by adding a full edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The start vertex \\
+\hline
+{\em end} & The end vertex \\
+\hline
+{\em face} & The face number that is to be split \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDCEL_a13e6cad29c2e9f9d03693c660b780912}\label{classDCEL_a13e6cad29c2e9f9d03693c660b780912}} 
+\index{DCEL@{DCEL}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{Traverse()}{Traverse()}}
+{\footnotesize\ttfamily void DCEL\+::\+Traverse (\begin{DoxyParamCaption}\item[{int}]{face,  }\item[{std\+::fstream \&}]{fp }\end{DoxyParamCaption})}
+
+
+
+Traverses the given face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & The face that is to be traversed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDCEL_ac4443007e21a9bdb6df5195eb2f34530}\label{classDCEL_ac4443007e21a9bdb6df5195eb2f34530}} 
+\index{DCEL@{DCEL}!TraverseFace@{TraverseFace}}
+\index{TraverseFace@{TraverseFace}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{TraverseFace()}{TraverseFace()}}
+{\footnotesize\ttfamily void DCEL\+::\+Traverse\+Face (\begin{DoxyParamCaption}\item[{int}]{face }\end{DoxyParamCaption})}
+
+
+
+Traverses the given face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & The face that is to be traversed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+DCEL.\+h\item 
+dcel.\+cpp\end{DoxyCompactItemize}

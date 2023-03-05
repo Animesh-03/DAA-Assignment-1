@@ -1,0 +1,213 @@
+\hypertarget{classPolygonDecomp}{}\doxysection{Polygon\+Decomp Class Reference}
+\label{classPolygonDecomp}\index{PolygonDecomp@{PolygonDecomp}}
+
+
+Class handles the decomposition of a polygon and minimising the edges by merging faces.  
+
+
+
+
+Collaboration diagram for Polygon\+Decomp\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPolygonDecomp_ae7f0b552e6e66b38ca2cb9656e87d7de}{Polygon\+Decomp}} (vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ v)
+\begin{DoxyCompactList}\small\item\em Constructs the polygon that is to be decomposed. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classPolygonDecomp_a19f13394a923780066c2dcbffe60b8e2}{Cross\+Product}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$A, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$B, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$C)
+\begin{DoxyCompactList}\small\item\em Cross Product between 3 points. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPolygonDecomp_a7c68f50df9cfcb70adac3a7aec40c350}{Is\+Notch}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$a, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$b, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Determines if b is notch. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPolygonDecomp_a843588d9d809df452ad4e60e8d92544e}{Generate\+Notches}} (int face)
+\begin{DoxyCompactList}\small\item\em Generates all the notches in the current polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygonDecomp_a99442cb61f13c3b7f5c9aaba8f9ce0aa}\label{classPolygonDecomp_a99442cb61f13c3b7f5c9aaba8f9ce0aa}} 
+set$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ {\bfseries Set\+Difference} (set$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&a, set$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&b)
+\item 
+bool \mbox{\hyperlink{classPolygonDecomp_a63f4294b5dda0178ed29589c6589d30d}{Inside\+Rect}} (double xmin, double xmax, double ymin, double ymax, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Determines if a vertex v is inside a rectangle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPolygonDecomp_a252fa0a68d0b508e800641ef2b753f70}{Decompose}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Decomposes the polygon into multiple convex polygons. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygonDecomp_a3c25e2bf4566c9b79e5c117b5a9076ea}\label{classPolygonDecomp_a3c25e2bf4566c9b79e5c117b5a9076ea}} 
+void \mbox{\hyperlink{classPolygonDecomp_a3c25e2bf4566c9b79e5c117b5a9076ea}{Merge\+Polygons}} ()
+\begin{DoxyCompactList}\small\item\em Merges redundant polygons to minimise the edges. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygonDecomp_a4cfd2a24b80fb36f75c14f5243b7df98}\label{classPolygonDecomp_a4cfd2a24b80fb36f75c14f5243b7df98}} 
+void {\bfseries Print\+Polygons} (fstream \&fp)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ \mbox{\hyperlink{classPolygonDecomp_a25e5e7538633cb9b90657dcf210b706b}{Get\+Centroid}} (vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&polygon)
+\begin{DoxyCompactList}\small\item\em Returns the centroid of the given polygon. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classPolygonDecomp_a12db3d0fcfba629937f038e13c26f937}{Vertex\+Inside}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$v, vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&polygon)
+\begin{DoxyCompactList}\small\item\em Determines if a vertex is inside the current polygon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPolygonDecomp_a4db80d9019e541cf422d1edb30bc17dc}\label{classPolygonDecomp_a4db80d9019e541cf422d1edb30bc17dc}} 
+\mbox{\hyperlink{classDCEL}{DCEL}} \mbox{\hyperlink{classPolygonDecomp_a4db80d9019e541cf422d1edb30bc17dc}{dcel}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDCEL}{DCEL}} of the polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygonDecomp_ac22e510c16b3d4eb1225c91a905658d8}\label{classPolygonDecomp_ac22e510c16b3d4eb1225c91a905658d8}} 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classPolygonDecomp_ac22e510c16b3d4eb1225c91a905658d8}{notches}}
+\begin{DoxyCompactList}\small\item\em Array stores all the notches in the polygon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygonDecomp_a6fc08a76f4e15aef9d2c29073526789e}\label{classPolygonDecomp_a6fc08a76f4e15aef9d2c29073526789e}} 
+set$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classPolygonDecomp_a6fc08a76f4e15aef9d2c29073526789e}{P}}
+\begin{DoxyCompactList}\small\item\em Set of all vertices in the polygon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class handles the decomposition of a polygon and minimising the edges by merging faces. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPolygonDecomp_ae7f0b552e6e66b38ca2cb9656e87d7de}\label{classPolygonDecomp_ae7f0b552e6e66b38ca2cb9656e87d7de}} 
+\index{PolygonDecomp@{PolygonDecomp}!PolygonDecomp@{PolygonDecomp}}
+\index{PolygonDecomp@{PolygonDecomp}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{PolygonDecomp()}{PolygonDecomp()}}
+{\footnotesize\ttfamily Polygon\+Decomp\+::\+Polygon\+Decomp (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs the polygon that is to be decomposed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertices of the polygon to be decomposed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPolygonDecomp_a19f13394a923780066c2dcbffe60b8e2}\label{classPolygonDecomp_a19f13394a923780066c2dcbffe60b8e2}} 
+\index{PolygonDecomp@{PolygonDecomp}!CrossProduct@{CrossProduct}}
+\index{CrossProduct@{CrossProduct}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{CrossProduct()}{CrossProduct()}}
+{\footnotesize\ttfamily double Polygon\+Decomp\+::\+Cross\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{B,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cross Product between 3 points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & Point 1 \\
+\hline
+{\em B} & Point 2 \\
+\hline
+{\em C} & Point 3 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cross product between A B and C 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygonDecomp_a252fa0a68d0b508e800641ef2b753f70}\label{classPolygonDecomp_a252fa0a68d0b508e800641ef2b753f70}} 
+\index{PolygonDecomp@{PolygonDecomp}!Decompose@{Decompose}}
+\index{Decompose@{Decompose}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{Decompose()}{Decompose()}}
+{\footnotesize\ttfamily void Polygon\+Decomp\+::\+Decompose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Decomposes the polygon into multiple convex polygons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Decomposition process starts from this \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPolygonDecomp_a843588d9d809df452ad4e60e8d92544e}\label{classPolygonDecomp_a843588d9d809df452ad4e60e8d92544e}} 
+\index{PolygonDecomp@{PolygonDecomp}!GenerateNotches@{GenerateNotches}}
+\index{GenerateNotches@{GenerateNotches}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{GenerateNotches()}{GenerateNotches()}}
+{\footnotesize\ttfamily void Polygon\+Decomp\+::\+Generate\+Notches (\begin{DoxyParamCaption}\item[{int}]{face }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates all the notches in the current polygon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & The face of the polygon \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPolygonDecomp_a25e5e7538633cb9b90657dcf210b706b}\label{classPolygonDecomp_a25e5e7538633cb9b90657dcf210b706b}} 
+\index{PolygonDecomp@{PolygonDecomp}!GetCentroid@{GetCentroid}}
+\index{GetCentroid@{GetCentroid}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{GetCentroid()}{GetCentroid()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classVertex}{Vertex}}$\ast$ Polygon\+Decomp\+::\+Get\+Centroid (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&}]{polygon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns the centroid of the given polygon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em polygon} & The vertices of the polygon \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The centroid of the polygon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygonDecomp_a63f4294b5dda0178ed29589c6589d30d}\label{classPolygonDecomp_a63f4294b5dda0178ed29589c6589d30d}} 
+\index{PolygonDecomp@{PolygonDecomp}!InsideRect@{InsideRect}}
+\index{InsideRect@{InsideRect}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{InsideRect()}{InsideRect()}}
+{\footnotesize\ttfamily bool Polygon\+Decomp\+::\+Inside\+Rect (\begin{DoxyParamCaption}\item[{double}]{xmin,  }\item[{double}]{xmax,  }\item[{double}]{ymin,  }\item[{double}]{ymax,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines if a vertex v is inside a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Point to be determined \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if v is inside rectangle else false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygonDecomp_a7c68f50df9cfcb70adac3a7aec40c350}\label{classPolygonDecomp_a7c68f50df9cfcb70adac3a7aec40c350}} 
+\index{PolygonDecomp@{PolygonDecomp}!IsNotch@{IsNotch}}
+\index{IsNotch@{IsNotch}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{IsNotch()}{IsNotch()}}
+{\footnotesize\ttfamily bool Polygon\+Decomp\+::\+Is\+Notch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines if b is notch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \mbox{\hyperlink{classVertex}{Vertex}} 1 \\
+\hline
+{\em b} & \mbox{\hyperlink{classVertex}{Vertex}} 2 \\
+\hline
+{\em c} & \mbox{\hyperlink{classVertex}{Vertex}} 3 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True is b is a notch else false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygonDecomp_a12db3d0fcfba629937f038e13c26f937}\label{classPolygonDecomp_a12db3d0fcfba629937f038e13c26f937}} 
+\index{PolygonDecomp@{PolygonDecomp}!VertexInside@{VertexInside}}
+\index{VertexInside@{VertexInside}!PolygonDecomp@{PolygonDecomp}}
+\doxysubsubsection{\texorpdfstring{VertexInside()}{VertexInside()}}
+{\footnotesize\ttfamily static bool Polygon\+Decomp\+::\+Vertex\+Inside (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{v,  }\item[{vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&}]{polygon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Determines if a vertex is inside the current polygon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The point that is to be determined \\
+\hline
+{\em polygon} & The current polygon\textquotesingle{}s vertices \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True is v is inside polygon else false 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main.\+cpp\end{DoxyCompactItemize}
