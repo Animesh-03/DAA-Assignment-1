@@ -340,7 +340,7 @@ int main()
     p.Decompose(verts[0]);
     p.PrintPolygons();
 
-    p.MergePolygons();
+    //p.MergePolygons();
 
     // p.PrintPolygons();
 }
