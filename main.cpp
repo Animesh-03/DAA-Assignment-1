@@ -59,42 +59,45 @@ class Line
 class PolygonDecomp
 {
     public:
-    DCEL lis;
+    /// @brief DCEL of the polygon
+    DCEL dcel;
+    /// @brief Array stores all the notches in the polygon
     vector<Vertex*> notches;    
+    /// @brief Set of all vertices in the polygon
     set<Vertex*> P;
-
+    
     PolygonDecomp(vector<Vertex*> v)
     {
-        lis=DCEL(v);
-        for(auto &x:lis.vertices)
+        dcel=DCEL(v);
+        for(auto &vertex:dcel.vertices)
         {
-            P.insert(x);
+            P.insert(vertex);
         }
     }
 
-    static Vertex* getCentroid(vector<Vertex*> &L)
+    static Vertex* GetCentroid(vector<Vertex*> &polygon)
     {
         double sumx = 0,sumy = 0;
-        for(auto &a:L)
+        for(auto &a:polygon)
         {
             sumx += a->x;
             sumy += a->y;
         }
-        sumx /= L.size();
-        sumy /= L.size();
+        sumx /= polygon.size();
+        sumy /= polygon.size();
         return new Vertex(sumx,sumy);
     }
 
-    static bool vertexInside(Vertex* p,vector<Vertex*> &poly)
+    static bool VertexInside(Vertex* v,vector<Vertex*> &polygon)
     {
-        auto c = getCentroid(poly);
+        auto centroid = GetCentroid(polygon);
         int l = 0;
-        int n = poly.size();
-        while(l<n)
+        int nVertices = polygon.size();
+        while(l<nVertices)
         {
-            int r = (l+1)%n;
-            Line L(poly[l],poly[r]);
-            if(L.differentSide(p,c))
+            int r = (l+1)%nVertices;
+            Line L(polygon[l],polygon[r]);
+            if(L.differentSide(v,centroid))
             {
                 return false;
             }
@@ -115,29 +118,29 @@ class PolygonDecomp
         return (X1 * Y2 - Y1 * X2);
     }
 
-    bool isNotch(Vertex* a,Vertex* b,Vertex* c)
+    bool IsNotch(Vertex* a,Vertex* b,Vertex* c)
     {
         double d = CrossProduct(a,b,c);
         return d<0;
     }
 
-    void generateNotches(int face)
+    void GenerateNotches(int face)
     {
         vector<Vertex*> notches;
-        for(auto &x:lis.vertices)
+        for(auto &vertex:dcel.vertices)
         {
-            if(isNotch(x->prev(face),x,x->next(face)))
-                notches.push_back(x);
-            P.insert(x);
+            if(IsNotch(vertex->prev(face),vertex,vertex->next(face)))
+                notches.push_back(vertex);
+            P.insert(vertex);
         }
 
-        for(auto &x:notches)
+        for(auto &vertex:notches)
         {
-            cout<<"Notch : "<<x->x<< " "<<x->y<<endl;
+            cout<<"Notch : "<<vertex->x<< " "<<vertex->y<<endl;
         }
     }
 
-    set<Vertex*> diff(set<Vertex*> &a,set<Vertex*> &b)
+    set<Vertex*> SetDifference(set<Vertex*> &a,set<Vertex*> &b)
     {
         set<Vertex*> c;
         for(auto &x:a)
@@ -148,18 +151,21 @@ class PolygonDecomp
         return c;
     }
 
-    bool insideRect(double xmin,double xmax,double ymin,double ymax,Vertex* p)
+    bool InsideRect(double xmin,double xmax,double ymin,double ymax,Vertex* v)
     {
-        return p->x<=xmax && p->x>=xmin && p->y<=ymax && p->y>=ymin;
+        return v->x<=xmax && v->x>=xmin && v->y<=ymax && v->y>=ymin;
     }
 
-    void decompose(Vertex* p)
+    void Decompose(Vertex* p)
     {
         vector<Vertex*> L;
         L.push_back(p);
+
         int n = P.size();
-        vector<Vertex*> L1; 
+        vector<Vertex*> L1;
+        // Stores the current face/polygon
         int face = 0;
+
         while(n>=3)
         {
             auto v1 = L.back(); auto v2 = v1->next(face);
@@ -168,7 +174,8 @@ class PolygonDecomp
             Vertex* vi_nex = vi->next(face); //v i+1
             Vertex* vi_prev = vi->next(face);//v i-1
 
-            while(!isNotch(vi_prev,vi,vi_nex) && !isNotch(vi,vi_nex,v1) && !isNotch(vi_nex,v1,v2) && L1.size()<n)
+            // Determine if adding next vertex will create a notch
+            while(!IsNotch(vi_prev,vi,vi_nex) && !IsNotch(vi,vi_nex,v1) && !IsNotch(vi_nex,v1,v2) && L1.size()<n)
             {
                 L1.push_back(vi_nex);
                 vi_prev = vi;
@@ -179,50 +186,50 @@ class PolygonDecomp
             if(L1.size()!=P.size())
             {
                 set<Vertex*> notches; //LPVS
-                set<Vertex*> pl = diff(P,Ls1);
+                set<Vertex*> pl = SetDifference(P,Ls1);
                 //rectangle part
                 double xmin,ymin,xmax,ymax;
                 xmin = ymin = INT_MAX;
                 xmax = ymax = INT_MIN;
-                for(auto &x:L1)
+                for(auto &vertex:L1)
                 {   
-                    xmin = min(xmin,x->x);
-                    ymin = min(ymin,x->y);
-                    xmax = max(xmax,x->x);
-                    ymax = max(ymax,x->y);
+                    xmin = min(xmin,vertex->x);
+                    ymin = min(ymin,vertex->y);
+                    xmax = max(xmax,vertex->x);
+                    ymax = max(ymax,vertex->y);
                 }
-                for(auto &x:pl)
+                for(auto &vertex:pl)
                 {
-                    if(insideRect(xmin,xmax,ymin,ymax,x) && isNotch(x->prev(face),x,x->next(face)))
-                        notches.insert(x);
+                    if(InsideRect(xmin,xmax,ymin,ymax,vertex) && IsNotch(vertex->prev(face),vertex,vertex->next(face)))
+                        notches.insert(vertex);
                 }
-                //L.back()
+                // Remove vertices that are notches from the current polygon
                 for(Vertex* a: notches)
                 {
-                    while(L1.size()>2 && vertexInside(a,L1))
+                    while(L1.size()>2 && VertexInside(a,L1))
                         L1.pop_back();
                 }
             }
             if(L1.size()>2)
             {
                 set<Vertex*> Ls1 = set<Vertex*>(L1.begin(),L1.end());
-                P = diff(P,Ls1);
+                P = SetDifference(P,Ls1);
                 auto a = L1.front(),b = L1.back();
                 P.insert(a);
                 P.insert(b);
                 n = n - L1.size() +2;
-                face = lis.SplitFace(a,b,face);
+                face = dcel.SplitFace(a,b,face);
             }
             L = L1;
         }
     }
 
-    void printPoly()
+    void PrintPolygons()
     {
-        for(auto &x:lis.faces)
+        for(auto &vertex:dcel.faces)
         {
-            cout<<x<<":";
-            lis.Traverse(x);
+            cout<<vertex<<":";
+            dcel.Traverse(vertex);
         }
     }
 };
@@ -253,8 +260,8 @@ int main()
     };
 
     PolygonDecomp p(verts);
-    p.decompose(verts[0]);
-    p.printPoly();
+    p.Decompose(verts[0]);
+    p.PrintPolygons();
 
 }
 
