@@ -258,16 +258,18 @@ class PolygonDecomp
         }
     }
 
-    void PrintPolygons()
+    void PrintPolygons(fstream &fp)
     {
-       fstream fp("output.txt", fstream::trunc | fstream::out);
 
         fp << dcel.faces.size() << endl;
+        
         for(auto &face:dcel.faces)
         {
-            // cout<<face<<":";
+            cout<<face<<":";
             dcel.Traverse(face, fp);
+            dcel.TraverseFace(face);
         }
+        cout << endl;
     }
 };
 
@@ -340,20 +342,24 @@ int main()
     fp.open("input.txt");
     fp >> n;
     vector<Vertex*> verts;
+
+    fstream fp2("outputNoMerge.txt", fstream::trunc | fstream::out);
+    fstream fp1("outputMerge.txt", fstream::trunc | fstream::out);
+
     for(int i=0; i<n; i++)
     {
-        int x, y;
+        double x, y;
         fp >> x >> y;
         verts.push_back(new Vertex(x,y));
     }
 
-    // auto verts = interpret(v);
     PolygonDecomp p(verts);
     p.Decompose(verts[0]);
 
-    p.MergePolygons();
-    // p.dcel.MergeFace(p.dcel.vertices[0], p.dcel.vertices[3]);
+    p.PrintPolygons(fp1);
 
-    p.PrintPolygons();
+    p.MergePolygons();
+
+    p.PrintPolygons(fp2);
 }
 
