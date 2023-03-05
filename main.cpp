@@ -217,6 +217,7 @@ class PolygonDecomp
                 auto a = L1.front(),b = L1.back();
                 P.insert(a);
                 P.insert(b);
+                // println(L1);
                 n = n - L1.size() +2;
                 face = dcel.SplitFace(a,b,face);
             }
@@ -224,17 +225,22 @@ class PolygonDecomp
         }
     }
 
+    void MergePolygons()
+    {
+
+    }
+
     void PrintPolygons()
     {
-        for(auto &vertex:dcel.faces)
+        cout << dcel.faces.size() << endl;
+        for(auto &face:dcel.faces)
         {
-            cout<<vertex<<":";
-            dcel.Traverse(vertex);
+            // cout<<face<<":";
+            dcel.Traverse(face);
         }
     }
 };
 
-//merge part
 
 void println(vector<Vertex*> & v)
 {
@@ -247,21 +253,68 @@ void println(vector<Vertex*> & v)
 int main()
 {
     vector<Vertex*> verts = {
-        new Vertex(-2,0),
-        new Vertex(-2,2),
-        new Vertex(0,5),
-        new Vertex(3,5),
-        new Vertex(7,3),
-        new Vertex(2,2),
-        new Vertex(5,-2),
-        new Vertex(2,-3),
-        new Vertex(-1,-3),
-        new Vertex(0,-1)
+        new Vertex(50, 423),
+        new Vertex(106, 392),
+        new Vertex(8, 492),
+        new Vertex(285, 500),
+        new Vertex(476, 506),
+        new Vertex(672, 476),
+        new Vertex(392, 421),
+        new Vertex(286, 366),
+        new Vertex(299, 314),
+        new Vertex(464, 355),
+        new Vertex(888, 448),
+        new Vertex(916, 388),
+        new Vertex(861, 373),
+        new Vertex(980, 210),
+        new Vertex(828, 245),
+        new Vertex(820, 296),
+        new Vertex(747, 331),
+        new Vertex(699, 336),
+        new Vertex(541, 158),
+        new Vertex(570, 294),
+        new Vertex(547, 323),
+        new Vertex(389, 141),
+        new Vertex(655, 147),
+        new Vertex(753, 269),
+        new Vertex(884, 173),
+        new Vertex(998, 148),
+        new Vertex(827, 83),
+        new Vertex(857, 7),
+        new Vertex(805, 8),
+        new Vertex(681, 72),
+        new Vertex(57, 78),
+        new Vertex(178, 128),
+        new Vertex(305, 84),
+        new Vertex(362, 260),
+        new Vertex(284, 244),
+        new Vertex(173, 268),
+        new Vertex(83, 172),
+        new Vertex(42, 228),
+        new Vertex(94, 291)
+
+
+        // new Vertex(8, 0),
+        // new Vertex(7, 10),
+        // new Vertex(6, 0),
+        // new Vertex(5,10),
+        // new Vertex(4, 0),
+        // new Vertex(3, 10),
+        // // new Vertex(2, 0),
+        // new Vertex(2,0),
+        // new Vertex(1, 10),
+        // new Vertex(0, 0),
+        // new Vertex(4, -2)
     };
+
+    // reverse(verts.begin(), verts.end());
 
     PolygonDecomp p(verts);
     p.Decompose(verts[0]);
     p.PrintPolygons();
+    // p.GenerateNotches(0);
+    // p.dcel.PrintDiagonals();
 
+    // p.dcel.TryRemoveDiagonal()
 }
 

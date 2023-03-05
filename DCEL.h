@@ -18,6 +18,9 @@ class DCEL {
         /// @brief Stores all edges of the polygon
         std::vector<HalfEdge*> edges;
 
+        /// @brief Stores only the diagonals of the polygon
+        std::vector<HalfEdge*> diagonals;
+
         /// @brief Stores the total number of faces in the polygon, which also corresponds to the number of convex polygons after decompostion
         std::set<int> faces;
 
@@ -52,9 +55,13 @@ class DCEL {
         /// @param face The face that is to be merged
         void MergeFace(Vertex* start, Vertex*end);
 
+        void TryRemoveDiagonal(HalfEdge* diagonal);
+
         /// @brief Traverses the given face
         /// @param face The face that is to be traversed
         void Traverse(int face);
+
+        void PrintDiagonals();
 };
 
 #endif

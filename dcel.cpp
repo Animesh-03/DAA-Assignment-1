@@ -1,3 +1,4 @@
+#include<algorithm>
 #include "DCEL.h"
 
 int DCEL::getAvailableFace()
@@ -91,6 +92,10 @@ int DCEL::SplitFace(Vertex* start, Vertex* end, int face)
         current = current->Next(face);
     } while(current->end != startEdge->start);
     current->face = startEdge->face;
+
+    diagonals.push_back(startEdge);
+    diagonals.push_back(startEdge->twin);
+
     return startEdge->face;
     // Increase the number of faces
 }
@@ -111,6 +116,9 @@ void DCEL::MergeFace(Vertex* start, Vertex*end)
     end->DeleteEdge(e1);
     start->DeleteIncidentEdge(e);
 
+    remove(diagonals.begin(), diagonals.end(), e);
+    remove(diagonals.begin(), diagonals.end(), e1);
+
     // Reassign the faces after the merge
     HalfEdge* startEdge = start->FindHalfEdgeWithFace(twinFace);
     HalfEdge* current = startEdge;
@@ -130,11 +138,45 @@ void DCEL::Traverse(int face)
     HalfEdge* start = this->FindHalfEdgeWithFace(face);
     HalfEdge* current = start;
 
+    int n = 0;
+
     do
     {
-        current->PrintStart();
+        n++;
         current = current->Next();
     } while(current != start);
-    current->start->Print();
+
+    std::cout << n << std::endl;
+
+    do
+    {
+        std::cout << current->start->x  << " " << current->start->y << std::endl;
+        current = current->Next();
+    } while(current != start);
+    std::cout << current->start->x  << " " << current->start->y << std::endl;
     std::cout << std::endl;
+}
+
+void DCEL::TryRemoveDiagonal(HalfEdge* diagonal)
+{
+    Vertex* v = diagonal->start;
+    Vertex* vNext = v->next(diagonal->twin->face);
+    Vertex* vPrev = v->prev(diagonal->face);
+
+    vPrev->Print();
+    std::cout << "-->";
+    v->Print();
+    std::cout << "-->";
+    vNext->Print();
+}
+
+void DCEL::PrintDiagonals()
+{
+    std::cout << "Diagonals:" << std::endl;
+    for(auto edge: diagonals)
+    {
+        edge->PrintStart();
+        edge->end->Print();
+        std::cout << std::endl;
+    }
 }
