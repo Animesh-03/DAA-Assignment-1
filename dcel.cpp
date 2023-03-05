@@ -1,5 +1,7 @@
 #include<algorithm>
+#include <fstream>
 #include "DCEL.h"
+
 
 int DCEL::getAvailableFace()
 {
@@ -132,13 +134,14 @@ void DCEL::MergeFace(Vertex* start, Vertex*end)
     faces.erase(twinFace);
 }
 
-void DCEL::Traverse(int face)
+void DCEL::Traverse(int face, std::fstream &fp)
 {
 
     HalfEdge* start = this->FindHalfEdgeWithFace(face);
     HalfEdge* current = start;
 
-    int n = 1;
+    int n = 0;
+
 
     do
     {
@@ -146,14 +149,15 @@ void DCEL::Traverse(int face)
         current = current->Next();
     } while(current != start);
 
-    std::cout << n << std::endl;
+    fp << n << std::endl;
 
     do
     {
-        std::cout << current->start->x  << " " << current->start->y << std::endl;
+        fp << current->start->x  << " " << current->start->y << std::endl;
         current = current->Next();
     } while(current != start);
-    std::cout << current->start->x  << " " << current->start->y << std::endl;
+
+    // std::cout << current->start->x  << " " << current->start->y << std::endl;
 }
 
 void DCEL::TryRemoveDiagonal(HalfEdge* diagonal)

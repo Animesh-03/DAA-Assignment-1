@@ -4,6 +4,7 @@
 #include<iostream>
 #include<vector>
 #include<set>
+#include <fstream>
 
 #include "vertex.h"
 #include "halfEdge.h"
@@ -59,7 +60,7 @@ class DCEL {
 
         /// @brief Traverses the given face
         /// @param face The face that is to be traversed
-        void Traverse(int face);
+        void Traverse(int face, std::fstream &fp);
 
         void PrintDiagonals();
 };

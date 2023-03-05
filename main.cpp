@@ -1,6 +1,8 @@
 #include<iostream>
 #include <limits.h>
 #include <algorithm>
+#include <fstream>
+
 #include "DCEL.h"
 
 using namespace std;
@@ -227,16 +229,32 @@ class PolygonDecomp
 
     void MergePolygons()
     {
+        for(int i = 0; i < dcel.diagonals.size(); i += 2)
+        {
+            Vertex* v1 = dcel.diagonals[i]->start;
+            Vertex* v1Next = v1->next(dcel.diagonals[i]->twin->face);
+            Vertex* v1Prev = v1->prev(dcel.diagonals[i]->face);
 
+            Vertex* v2 = dcel.diagonals[i+1]->start;
+            Vertex* v2Next = v1->next(dcel.diagonals[i+1]->twin->face);
+            Vertex* v2Prev = v1->prev(dcel.diagonals[i+1]->face);
+
+            if(IsNotch(v1Prev, v1 , v1Next) && IsNotch(v1Prev, v1 , v1Next))
+            {
+                dcel.MergeFace(v1, v2);
+            }
+        }
     }
 
     void PrintPolygons()
     {
-        cout << dcel.faces.size() << endl;
+       fstream fp("output.txt", fstream::trunc | fstream::out);
+
+        fp << dcel.faces.size() << endl;
         for(auto &face:dcel.faces)
         {
             // cout<<face<<":";
-            dcel.Traverse(face);
+            dcel.Traverse(face, fp);
         }
     }
 };
@@ -250,7 +268,47 @@ void println(vector<Vertex*> & v)
 
 }
 
-vector<pair<int,int>> v = {{0,0},{1,1},{1,0}};
+vector<pair<int,int>> v = {
+    {50, 423},
+    {106,392},
+    {8, 492},
+    {285, 500},
+    {476, 506},
+    {672, 476},
+    {392, 421},
+    {286, 366},
+    {299, 314},
+    {464, 355},
+    {888, 448},
+    {916, 388},
+    {861, 373},
+    {980, 210},
+    {828, 245},
+    {820, 296},
+    {747, 331},
+    {699, 336},
+    {541, 158},
+    {570, 294},
+    {547, 323},
+    {389, 141},
+    {655, 147},
+    {753, 269},
+    {884, 173},
+    {998, 148},
+    {827, 83},
+    {857, 7},
+    {805, 8},
+    {681, 72},
+    {57, 78},
+    {178, 128},
+    {305, 84},
+    {362, 260},
+    {284, 244},
+    {173, 268},
+   {83, 172},
+   {42, 228},
+   {94, 291},
+};
 
 vector<Vertex*> interpret(vector<pair<int,int>> &v)
 {
@@ -264,9 +322,26 @@ vector<Vertex*> interpret(vector<pair<int,int>> &v)
 
 int main()
 {
-    auto verts = interpret(v);
+
+    int n;
+    ifstream fp;
+    fp.open("input.txt");
+    fp >> n;
+    vector<Vertex*> verts;
+    for(int i=0; i<n; i++)
+    {
+        int x, y;
+        fp >> x >> y;
+        verts.push_back(new Vertex(x,y));
+    }
+
+    // auto verts = interpret(v);
     PolygonDecomp p(verts);
     p.Decompose(verts[0]);
     p.PrintPolygons();
+
+    p.MergePolygons();
+
+    // p.PrintPolygons();
 }
 
