@@ -138,7 +138,7 @@ void DCEL::Traverse(int face)
     HalfEdge* start = this->FindHalfEdgeWithFace(face);
     HalfEdge* current = start;
 
-    int n = 0;
+    int n = 1;
 
     do
     {
@@ -154,7 +154,6 @@ void DCEL::Traverse(int face)
         current = current->Next();
     } while(current != start);
     std::cout << current->start->x  << " " << current->start->y << std::endl;
-    std::cout << std::endl;
 }
 
 void DCEL::TryRemoveDiagonal(HalfEdge* diagonal)
