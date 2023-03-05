@@ -231,31 +231,45 @@ class PolygonDecomp
     {
         for(int i = 0; i < dcel.diagonals.size(); i += 2)
         {
-            Vertex* v1 = dcel.diagonals[i]->start;
-            Vertex* v1Next = v1->next(dcel.diagonals[i]->twin->face);
-            Vertex* v1Prev = v1->prev(dcel.diagonals[i]->face);
+            Vertex* start = dcel.diagonals[i]->start;
 
-            Vertex* v2 = dcel.diagonals[i+1]->start;
-            Vertex* v2Next = v1->next(dcel.diagonals[i+1]->twin->face);
-            Vertex* v2Prev = v1->prev(dcel.diagonals[i+1]->face);
+            // Vertex* v1Next = v1->next(dcel.diagonals[i]->twin->face);
+            // Vertex* v1Prev = v1->prev(dcel.diagonals[i]->face);
 
-            if(IsNotch(v1Prev, v1 , v1Next) && IsNotch(v1Prev, v1 , v1Next))
+            Vertex* end = dcel.diagonals[i]->end;
+            // Vertex* v2Next = v1->next(dcel.diagonals[i+1]->twin->face);
+            // Vertex* v2Prev = v1->prev(dcel.diagonals[i+1]->face);
+
+            int startFace = dcel.diagonals[i]->face, endFace = dcel.diagonals[i]->twin->face;
+
+            Vertex* startPrev = start->prev(startFace);
+            Vertex* startNext = start->next(endFace);
+
+            Vertex* endPrev = end->prev(endFace);
+            Vertex* endNext = end->next(startFace);
+
+            if(!IsNotch(startPrev, start , startNext) && !IsNotch(endPrev, end , endNext))
             {
-                dcel.MergeFace(v1, v2);
+                start->Print();
+                end->Print();
+                // cout << diago
+                dcel.MergeFace(start, end);
             }
         }
     }
 
-    void PrintPolygons()
+    void PrintPolygons(fstream &fp)
     {
-       fstream fp("output.txt", fstream::trunc | fstream::out);
 
         fp << dcel.faces.size() << endl;
+        
         for(auto &face:dcel.faces)
         {
-            // cout<<face<<":";
+            cout<<face<<":";
             dcel.Traverse(face, fp);
+            dcel.TraverseFace(face);
         }
+        cout << endl;
     }
 };
 
@@ -328,20 +342,24 @@ int main()
     fp.open("input.txt");
     fp >> n;
     vector<Vertex*> verts;
+
+    fstream fp2("outputNoMerge.txt", fstream::trunc | fstream::out);
+    fstream fp1("outputMerge.txt", fstream::trunc | fstream::out);
+
     for(int i=0; i<n; i++)
     {
-        int x, y;
+        double x, y;
         fp >> x >> y;
         verts.push_back(new Vertex(x,y));
     }
 
-    // auto verts = interpret(v);
     PolygonDecomp p(verts);
     p.Decompose(verts[0]);
-    p.PrintPolygons();
 
-    //p.MergePolygons();
+    p.PrintPolygons(fp1);
 
-    // p.PrintPolygons();
+    p.MergePolygons();
+
+    p.PrintPolygons(fp2);
 }
 

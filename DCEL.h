@@ -61,6 +61,7 @@ class DCEL {
         /// @brief Traverses the given face
         /// @param face The face that is to be traversed
         void Traverse(int face, std::fstream &fp);
+        void TraverseFace(int face);
 
         void PrintDiagonals();
 };

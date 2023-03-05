@@ -5,9 +5,12 @@
 from time import sleep
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
+import sys
 
+cmdargs = sys.argv
+print(cmdargs[1])
 
-file = open("./output.txt","r")
+file = open(cmdargs[1],"r")
 lines = file.readlines()
 lines.append("12")
 
@@ -25,6 +28,7 @@ for a in lines:
 
 # polygon = [[15, 16], [13, 8], [9, 9], [4, 9],[0,8],[-5,5], [0,2], [2,-2], [6,-4], [10,-5], [15,-3], [17,0], [15,2], [10,2],[7,3], [10,5]]
 convex_polygons = temp
+print(temp)
 fig, ax = plt.subplots()
 
 def getCentroid(a):
