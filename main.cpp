@@ -2,6 +2,7 @@
 #include <limits.h>
 #include <algorithm>
 #include <fstream>
+#include <time.h>
 
 #include "DCEL.h"
 
@@ -246,7 +247,6 @@ class PolygonDecomp
                 auto a = L1.front(),b = L1.back();
                 P.insert(a);
                 P.insert(b);
-                // println(L1);
                 n = n - L1.size() +2;
                 face = dcel.SplitFace(a,b,face);
             }
@@ -272,8 +272,6 @@ class PolygonDecomp
 
             if(!IsNotch(startPrev, start , startNext) && !IsNotch(endPrev, end , endNext))
             {
-                start->Print();
-                end->Print();
                 // cout << diago
                 dcel.MergeFace(start, end);
             }
@@ -287,11 +285,10 @@ class PolygonDecomp
         
         for(auto &face:dcel.faces)
         {
-            cout<<face<<":";
-            dcel.Traverse(face, fp);
-            dcel.TraverseFace(face);
+            // cout<<face<<":";
+            // dcel.Traverse(face, fp);
+            // dcel.TraverseFace(face);
         }
-        cout << endl;
     }
 };
 
@@ -304,63 +301,12 @@ void println(vector<Vertex*> & v)
 
 }
 
-vector<pair<int,int>> v = {
-    {50, 423},
-    {106,392},
-    {8, 492},
-    {285, 500},
-    {476, 506},
-    {672, 476},
-    {392, 421},
-    {286, 366},
-    {299, 314},
-    {464, 355},
-    {888, 448},
-    {916, 388},
-    {861, 373},
-    {980, 210},
-    {828, 245},
-    {820, 296},
-    {747, 331},
-    {699, 336},
-    {541, 158},
-    {570, 294},
-    {547, 323},
-    {389, 141},
-    {655, 147},
-    {753, 269},
-vector<Vertex*> interpret(vector<pair<int,int>> &v)
-{
-    vector<Vertex*> ret;
-    for(auto &x:v)
-    {
-        ret.push_back(new Vertex(x.first,x.second));
-    }
-    return ret;
-}
-    {884, 173},
-    {998, 148},
-    {827, 83},
-    {857, 7},
-    {805, 8},
-    {681, 72},
-    {57, 78},
-    {178, 128},
-    {305, 84},
-    {362, 260},
-    {284, 244},
-    {173, 268},
-   {83, 172},
-   {42, 228},
-   {94, 291},
-};
-
 int main()
 {
 
     int n;
     ifstream fp;
-    fp.open("input.txt");
+    fp.open("ArtificialInput.txt");
     fp >> n;
     vector<Vertex*> verts;
 
@@ -374,14 +320,24 @@ int main()
         verts.push_back(new Vertex(x,y));
     }
 
-    PolygonDecomp p(verts);
-    p.GenerateNotches(0);
+    clock_t start, end;
 
+    PolygonDecomp p(verts);
+
+    start = clock();
     p.Decompose(verts[0]);
+    end = clock();
+
+    cout << "Decomp Time: " << double(end - start)/double(CLOCKS_PER_SEC) << endl;
 
     p.PrintPolygons(fp1);
 
+    start = clock();
     p.MergePolygons();
+    end = clock();
+
+    cout << "Merge Time: " << double(end - start)/double(CLOCKS_PER_SEC) << endl;
+
 
     p.PrintPolygons(fp2);
 }

@@ -44,9 +44,9 @@ def plot_polygon1(polygon, out_file_name):
     # plt.close()
     
     
-random.seed(5)
+random.seed(7)
     
-polygon = random_polygon(num_points=100)
+polygon = random_polygon(num_points=1000)
     
 with open("ArtificialInput.txt","w") as f:
     f.write(str(len(polygon))+ '\n')

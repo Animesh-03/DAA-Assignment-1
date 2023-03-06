@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assignment-1 Documentation</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-content">
+                <div class="nav-name">
+                    <h3>Polygon Decomposition</h3>
+                </div>
+                <div class="nav-options">
+                    <a href="#members">Members</a>
+                    <a href="#algo">Algorithm</a>
+                    <a href="#outputs">Outputs</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div id="members" class="members pb-8">
+                <h1 class="text-6xl">Polygon Decomposition</h1>
+                <div class="member-list text-xl mt-8">
+                    <ul>
+                        <li>Aditha Venkata Animesh - 2020A7PS0193H</li>
+                        <li>Manan Mayur Popat - 2020A7PS0029H</li>
+                        <li>Vibhum Raj Tripathi - 2020A7PS0247H</li>
+                        <li>Divyan Goyal - 2020A7PS0042H</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div id="algo" class="algo mt-8">
+                <h1 class="text-6xl mb-8">Algorithm</h1>
+                    <div id="objective">
+                        <h2 class="text-4xl mb-6">Objectives</h2>
+                        <p>
+                            <ul class="list-decimal text-2xl ml-8">
+                                <li>Implement a DCEL</li>
+                                <li>Implement the polygon Decomposition Algorithm for the <a class="link" href="https://cms.bits-hyderabad.ac.in/pluginfile.php/282041/mod_resource/content/1/1-s2.0-S0377221799000338-main.pdf" >paper</a></li>
+                                <li>Remove redundant edges by merging faces</li>
+                                <li>Time Analysis of the Algorithm</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div id="algo-text" class="mb-8">
+                        <div class="mb-8">
+                            <h2 class="text-4xl mb-6">DCEL</h2>
+                            <div class="text-xl">
+                                <p>
+                                    The algorithm uses a Doubly Connected Edge List i.e, a DCEL to store all the polygon's information like vertices, edges, faces, etc.
+                                    A DCEL stores half edges instead of edges to determine what face an edge is part of and also makes traversal of a face accessibel.
+                                    Using a DCEL results in an O(N) traversal given any vertex, half-edge or a face.
+                                </p>
+                                <br/>
+                                <p>
+                                    Given a vertex you can find all the edges originating from it as well incident on it which enables backward traversal of the
+                                    polygon in O(N) time.
+                                </p>
+                                <br/>
+                                <p>
+                                    Given a half-edge, you can find the start and ending vertices which can then be used to find the next half edge with a given
+                                    face by searching through the edges of the ending vertex which belongs to that face.
+                                </p>
+                                <br />
+                                <p>
+                                    Given a face you can find the half-edges belonging to that face by searching through all the edges in the polygon.
+                                    Once a half-edge with the face is found, the polygon can be traversed by going through the "next" edges in that face which
+                                    is obtainable in O(1) time.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-4xl mb-6">Decomposition Algorithm</h2>
+                            <div class="text-xl">
+                                <ol class="list-decimal ml-8">
+                                    <li>Pick a random vertex from the given polygon and keep traversing it in clockwise direction till a notch is found</li>
+                                    <li>If the next vertex is a notch then connect the initial vertex and the current vertex</li>
+                                    <li>Store the new edge that is added in a separate list called "diagonals" which is to be used in the merging process</li>
+                                    <li>Update the edge information in the DCEL</li>
+                                    <li>Start traversing from the next vertex and repeat Step 2</li>
+                                    <li>The decomposed polygon will be available in the DCEL</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-4xl mb-6">Merge Algorithm</h2>
+                            <div class="text-xl">
+                                <ol class="list-decimal ml-8">
+                                    <li>For each half-edge in the diagonals list, check if removing the edge will cause a notch on either end of the half edge</li>
+                                    <li>If a new notch is not formed by removing the diagonal then remove the diagonal and update in the DCEL</li>
+                                    <li>Update the edge information on all the edges that are involved in the merged faces</li>
+                                    <li>The merged polygon is available in the DCEL</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-4xl mb-6">Time Complexity</h2>
+                            <div>
+                                <h3 class="text-2xl">DCEL Traversal</h3>
+                                <p class="text-lg">
+                                    Since every vertex has the information of all its edges and every edge has information about its vertices and faces.
+                                    Traversal is possible in O(N) time, where N is the number of vertices in the polygon
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl">Merging Complexity</h3>
+                                <p class="text-lg">
+                                    Since each diagonal is traversed exactly once, and each traversal takes X vertices where X is the distance between the 
+                                    start and end vertices of the diagonal when the diagonal is removed, the time complexity will be O(D*X) where D is the number
+                                    of diagonal.
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div id="reference">
+                        <h3 class="text-3xl mb-6">References</h2>
+                        <ol class="list-decimal ml-8 text-lg">
+                            <li><a class="link" href="https://www.sciencedirect.com/science/article/abs/pii/S0377221799000338?via%3Dihub">https://www.sciencedirect.com/science/article/abs/pii/S0377221799000338?via%3Dihub</a></li>
+                            <li><a class="link" href="https://www.cs.umd.edu/class/spring2020/cmsc754/Lects/lect10-dcel.pdf">https://www.cs.umd.edu/class/spring2020/cmsc754/Lects/lect10-dcel.pdf</a></li>
+                            <li><a class="link" href="https://en.wikipedia.org/wiki/Doubly_connected_edge_list">https://en.wikipedia.org/wiki/Doubly_connected_edge_list</a></li>
+                        </ol>
+                    </div>
+                </div>
+    
+                <div id="outputs" class="frames my-8">
+                    <h1 class="text-6xl mb-8">Outputs</h1>
+                    <div class="flex flex-col justify-center">
+
+                        <div class="flex flex-col justify-center mb-8">
+                            <div class="flex justify-center mb-8 w-full">
+                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">
+                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">   
+                            </div>
+                            <div class="flex justify-around mb-8 w-full">
+                                <label>Raw</label>
+                                <label>Merged</label>
+                            </div>
+                            <p class="text-xl m-auto">A polygon with 100 vertices decomposed into 200 faces. It is then merged into 100 faces. The algorithm took 1 second to run</p>
+                        </div>
+
+                        <div class="flex flex-col justify-center mb-8">
+                            <div class="flex justify-center mb-8 w-full">
+                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">
+                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">   
+                            </div>
+                            <div class="flex justify-around mb-8 w-full">
+                                <label>Raw</label>
+                                <label>Merged</label>
+                            </div>
+                            <p class="text-xl m-auto">A polygon with 100 vertices decomposed into 200 faces. It is then merged into 100 faces. The algorithm took 1 second to run</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
