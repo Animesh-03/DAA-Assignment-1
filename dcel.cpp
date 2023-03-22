@@ -107,7 +107,7 @@ void DCEL::MergeFace(Vertex* start, Vertex*end)
     // Find the half edge with the given face and vertex
     HalfEdge* e = getEdge(start,end);
     HalfEdge* e1 = e->twin;
-    std::cout<<e->face<<std::endl;
+    // std::cout<<e->face<<std::endl;
     int face = e->face;
     // Store the face of the twin edge
     int twinFace = e1->face;

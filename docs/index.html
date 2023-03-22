@@ -24,7 +24,11 @@
 
         <div class="content">
             <div id="members" class="members pb-8">
-                <h1 class="text-6xl">Polygon Decomposition</h1>
+                <h1 class="text-6xl" align="center">CS F364 : DESIGN AND ANALYSIS OF ALGORITHMS</h1>
+                <br>
+                <h2 class="text-4xl">Assignment - 1</h2>
+                <br>
+                <h3 class="text-2xl"><u>Group Members</u></h3>
                 <div class="member-list text-xl mt-8">
                     <ul>
                         <li>Aditha Venkata Animesh - 2020A7PS0193H</li>
@@ -41,10 +45,10 @@
                         <h2 class="text-4xl mb-6">Objectives</h2>
                         <p>
                             <ul class="list-decimal text-2xl ml-8">
-                                <li>Implement a DCEL</li>
-                                <li>Implement the polygon Decomposition Algorithm for the <a class="link" href="https://cms.bits-hyderabad.ac.in/pluginfile.php/282041/mod_resource/content/1/1-s2.0-S0377221799000338-main.pdf" >paper</a></li>
+                                <li>Implement the DCEL data structure</li>
+                                <li>Implement the polygon decomposition algorithm for the <a class="link" href="https://cms.bits-hyderabad.ac.in/pluginfile.php/282041/mod_resource/content/1/1-s2.0-S0377221799000338-main.pdf" >Paper</a></li>
                                 <li>Remove redundant edges by merging faces</li>
-                                <li>Time Analysis of the Algorithm</li>
+                                <li>Time analysis of the algorithm</li>
                             </ul>
                         </p>
                     </div>
@@ -53,72 +57,78 @@
                             <h2 class="text-4xl mb-6">DCEL</h2>
                             <div class="text-xl">
                                 <p>
-                                    The algorithm uses a Doubly Connected Edge List i.e, a DCEL to store all the polygon's information like vertices, edges, faces, etc.
-                                    A DCEL stores half edges instead of edges to determine what face an edge is part of and also makes traversal of a face accessibel.
+                                    The algorithm uses a Doubly Connected Edge List (DCEL) to store the entities of a polygon, including vertices, edges, and faces.
+                                    A DCEL stores two half edges (called twin edges) for each undirected edge, which helps determine what faces an edge is part of and also facilitates traversal of a face.
                                     Using a DCEL results in an O(N) traversal given any vertex, half-edge or a face.
                                 </p>
                                 <br/>
                                 <p>
-                                    Given a vertex you can find all the edges originating from it as well incident on it which enables backward traversal of the
+                                    Given a vertex, you can find all the edges originating from it as well as those incident on it. This functionality enables backward traversal of the
                                     polygon in O(N) time.
                                 </p>
                                 <br/>
                                 <p>
-                                    Given a half-edge, you can find the start and ending vertices which can then be used to find the next half edge with a given
-                                    face by searching through the edges of the ending vertex which belongs to that face.
+                                    Given a half-edge, you can find the origin and destination vertices which can then be used to find the next half edge on a given
+                                    face by searching through the edges of the destination vertex belonging to that face.
                                 </p>
                                 <br />
                                 <p>
-                                    Given a face you can find the half-edges belonging to that face by searching through all the edges in the polygon.
-                                    Once a half-edge with the face is found, the polygon can be traversed by going through the "next" edges in that face which
+                                    Given a face, you can find the half-edges belonging to that face by searching through all the edges in the polygon.
+                                    Once a half-edge associated with the face is found, the polygon can be traversed by going through the "next" edges in that face which
                                     is obtainable in O(1) time.
                                 </p>
 
                             </div>
                         </div>
-
+                        <br>
                         <div class="mb-8">
                             <h2 class="text-4xl mb-6">Decomposition Algorithm</h2>
                             <div class="text-xl">
                                 <ol class="list-decimal ml-8">
-                                    <li>Pick a random vertex from the given polygon and keep traversing it in clockwise direction till a notch is found</li>
-                                    <li>If the next vertex is a notch then connect the initial vertex and the current vertex</li>
-                                    <li>Store the new edge that is added in a separate list called "diagonals" which is to be used in the merging process</li>
-                                    <li>Update the edge information in the DCEL</li>
-                                    <li>Start traversing from the next vertex and repeat Step 2</li>
-                                    <li>The decomposed polygon will be available in the DCEL</li>
+                                    <li>Pick a random vertex as the initial vertex from the given polygon.</li>
+                                    <li>Keep traversing the polygon from starting from the initial vertex in clockwise direction until a notch is found.</li>
+                                    <li>If the next vertex is a notch, then connect the initial vertex and the current vertex.</li>
+                                    <li>Store the new edge in a separate list called "diagonals" which is to be used in the merging process.</li>
+                                    <li>Also update the edge information in the DCEL.</li>
+                                    <li>Assign the next vertex as the initial vertex and repeat Steps 2 through 6.</li>
+                                    <li>The decomposed polygon will be available in the DCEL.</li>
                                 </ol>
                             </div>
                         </div>
-
+                        <br>
                         <div class="mb-8">
-                            <h2 class="text-4xl mb-6">Merge Algorithm</h2>
+                            <h2 class="text-4xl mb-6">Merging Process</h2>
                             <div class="text-xl">
                                 <ol class="list-decimal ml-8">
-                                    <li>For each half-edge in the diagonals list, check if removing the edge will cause a notch on either end of the half edge</li>
-                                    <li>If a new notch is not formed by removing the diagonal then remove the diagonal and update in the DCEL</li>
-                                    <li>Update the edge information on all the edges that are involved in the merged faces</li>
-                                    <li>The merged polygon is available in the DCEL</li>
+                                    <li>For each half-edge in the diagonals list, check if removing the edge would result any of the source or destination vertices to become a notch.</li>
+                                    <li>If a new notch is not formed by removing the diagonal, then remove the diagonal and update in the DCEL.</li>
+                                    <li>Update the edge information for all the edges that are involved in the merged faces.</li>
+                                    <li>The merged polygon decomposition is available in the DCEL.</li>
                                 </ol>
                             </div>
                         </div>
-
+                        <br>
                         <div class="mb-8">
-                            <h2 class="text-4xl mb-6">Time Complexity</h2>
+                            <h2 class="text-4xl mb-6">Time Complexity Analysis</h2>
                             <div>
-                                <h3 class="text-2xl">DCEL Traversal</h3>
+                                <h3 class="text-2xl"><u>Decomposition Step</u></h3>
                                 <p class="text-lg">
-                                    Since every vertex has the information of all its edges and every edge has information about its vertices and faces.
-                                    Traversal is possible in O(N) time, where N is the number of vertices in the polygon
+                                    The DCEL data structure facilitates each vertex to have the information of all its edges and each edge to have the information about its vertices and faces.
+                                    So, traversal is possible in O(N) time, where N is the number of vertices in the polygon.
+                                    <br>The algorithm (MP1 in the paper) is essentially an output-sensitive algorithm, since its time complexity depends on both the input size (number of vertices of polygon)
+                                    as well as the ouput size (number of convex sub-polygons or faces the polygon is decomposed into).
+                                    <br>Since no new vertex is added in the process, the number of vertices remains the same, equal to the number of edges in the initial polygon. Let that be 'n'.
+                                    <br>Depending on the shape of the polygon, the number of notches differs. Let that for the given intial polygon be 'r'.
+                                    <br>Thus, it is evident that the time complexity of the decomposition algorithm is O(n*r).
                                 </p>
                             </div>
-
+                            <br>
                             <div>
-                                <h3 class="text-2xl">Merging Complexity</h3>
+                                <h3 class="text-2xl"><u>Merging Step</u></h3>
                                 <p class="text-lg">
-                                    Since each diagonal is traversed exactly once, and each traversal takes X vertices where X is the distance between the 
-                                    start and end vertices of the diagonal when the diagonal is removed, the time complexity will be O(D*X) where D is the number
-                                    of diagonal.
+                                    Since each diagonal is traversed exactly once, and each traversal consists of visiting X vertices, where X is the distance between the 
+                                    source and destination vertices of the diagonal (half edge) when the diagonal is removed, the time complexity will be O(D*X) where D is the number
+                                    of diagonals. This clearly highlights the output sensitivity of the whole algorithm.
                                 </p>
                             </div>
                         </div>
@@ -131,6 +141,7 @@
                             <li><a class="link" href="https://www.sciencedirect.com/science/article/abs/pii/S0377221799000338?via%3Dihub">https://www.sciencedirect.com/science/article/abs/pii/S0377221799000338?via%3Dihub</a></li>
                             <li><a class="link" href="https://www.cs.umd.edu/class/spring2020/cmsc754/Lects/lect10-dcel.pdf">https://www.cs.umd.edu/class/spring2020/cmsc754/Lects/lect10-dcel.pdf</a></li>
                             <li><a class="link" href="https://en.wikipedia.org/wiki/Doubly_connected_edge_list">https://en.wikipedia.org/wiki/Doubly_connected_edge_list</a></li>
+                            <li><a class="link" href="https://people.sc.fsu.edu/~jburkardt/datasets/polygon/polygon.html">https://people.sc.fsu.edu/~jburkardt/datasets/polygon/polygon.html</a></li>
                         </ol>
                     </div>
                 </div>
@@ -141,26 +152,64 @@
 
                         <div class="flex flex-col justify-center mb-8">
                             <div class="flex justify-center mb-8 w-full">
-                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">
-                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">   
+                                <img width="300px" height="300px" class="m-auto" src="images/r1.png">
+                                <img width="300px" height="300px" class="m-auto" src="images/r2.png">   
                             </div>
                             <div class="flex justify-around mb-8 w-full">
-                                <label>Raw</label>
-                                <label>Merged</label>
+                                <label>Initial Polygon</label>
+                                <label>Convex Decomposition</label>
                             </div>
-                            <p class="text-xl m-auto">A polygon with 100 vertices decomposed into 200 faces. It is then merged into 100 faces. The algorithm took 1 second to run</p>
+                            <p class="text-xl m-auto">A polygon with 30 vertices decomposed into 18 faces.</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="flex flex-col justify-center mb-8">
+                            <div class="flex justify-center mb-8 w-full">
+                                <img width="250px" height="300px" class="m-auto" src="images/d1.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/d2.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/d3.png">   
+                                <img width="250px" height="300px" class="m-auto" src="images/d4.png">  
+                                <img width="250px" height="300px" class="m-auto" src="images/d5.png">     
+                            </div>
+                            <div class="flex justify-around mb-8 w-full">
+                                <label>1</label>
+                                <label>2</label>
+                                <label>3</label>
+                                <label>4</label>
+                                <label>5</label>
+                            </div>
+                            <p class="text-xl m-auto">Examples of some beautiful polygon decompositions.</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="flex flex-col justify-center mb-8">
+                            <div class="flex justify-center mb-8 w-full">
+                                <img width="250px" height="300px" class="m-auto" src="images/s10.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/s50.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/s100.png">   
+                                <img width="250px" height="300px" class="m-auto" src="images/s200.png">       
+                            </div>
+                            <div class="flex justify-around mb-8 w-full">
+                                <label>n = 10, t1 = 154, t2 = 11</label>
+                                <label>n = 50, t1 = 4490, t2 = 71</label>
+                                <label>n = 100, t1 = 16425, t2 = 95</label>
+                                <label>n = 200, t1 = 53975, t2 = 266</label>
+                            </div>
                         </div>
 
                         <div class="flex flex-col justify-center mb-8">
                             <div class="flex justify-center mb-8 w-full">
-                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">
-                                <img width="300px" height="300px" class="m-auto" src="images/100-25f-1o.png">   
+                                <img width="250px" height="300px" class="m-auto" src="images/s500.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/s750.png">
+                                <img width="250px" height="300px" class="m-auto" src="images/s1000.png">   
                             </div>
                             <div class="flex justify-around mb-8 w-full">
-                                <label>Raw</label>
-                                <label>Merged</label>
+                                <label>n = 500, t1 = 308701, t2 = 329</label>
+                                <label>n = 750, t1 = 598746, t2 = 443</label>
+                                <label>n = 1000, t1 = 1056518, t2 = 601</label>
                             </div>
-                            <p class="text-xl m-auto">A polygon with 100 vertices decomposed into 200 faces. It is then merged into 100 faces. The algorithm took 1 second to run</p>
+                            <p class="text-xl m-auto">Number of vertices &emsp; VS &emsp; Execution time (in microseconds).</p>
+                            <p class="text-xl m-auto">t1 : Decomposition Time, t2 : Merging Time.</p>
                         </div>
                 </div>
             </div>

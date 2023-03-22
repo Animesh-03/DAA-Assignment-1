@@ -247,6 +247,7 @@ class PolygonDecomp
                 auto a = L1.front(),b = L1.back();
                 P.insert(a);
                 P.insert(b);
+                // println(L1);
                 n = n - L1.size() +2;
                 face = dcel.SplitFace(a,b,face);
             }
