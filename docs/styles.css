@@ -5,12 +5,17 @@ body {
     background-size: 100% 100%;
     color: azure;
     font-family: 'Roboto', sans-serif;
+    padding: 0;
 }
 
+h1,h2
+{
+    width: 98.8vw;
+}
 h1
 {
     background-color: rgba(0,0,0,0.2);
-    border-radius: 15px;
+    /* border-radius: 15px; */
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 10px;
@@ -46,11 +51,12 @@ img:hover{
     border-radius: 5px;
 }
 .content {
-    padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 50px;
+    padding-top:20px;
 }
-
+p,li,h3{
+    padding-left:50px;
+    padding-right:50px;
+}
 .nav-options a{
     border-radius: 20px;
     padding:10px;
