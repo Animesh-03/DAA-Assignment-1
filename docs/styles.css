@@ -12,6 +12,17 @@ h1,h2
 {
     width: 98.8vw;
 }
+
+h4{
+    color:rgb(240, 240, 240);
+    font-size: 4rem;
+}
+
+.card
+{
+    padding: 40px;
+    background-color: rgba(0,0,0,0.2);
+}
 h1
 {
     background-color: rgba(0,0,0,0.2);
