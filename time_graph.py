@@ -2,9 +2,11 @@ import sys
 import matplotlib 
 import os 
 
-c = list(10*x for x in range(1,20))
+c = list(10*x for x in range(1,10)) + list(100*x for x in range(1,8))
+c = [700]
 dict = {}
 for i in c:
+    print(i)
     os.system("python3 generate.py "+str(i))
     os.system("./a.out 0")
     with open("times.txt") as f:
