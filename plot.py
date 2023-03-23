@@ -7,10 +7,11 @@ from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
 import sys
 
-cmdargs = sys.argv
-print(cmdargs[1])
+DELAY = float(sys.argv[2])
 
-file = open(cmdargs[1],"r")
+flag = int(sys.argv[1])
+file_name = "outputNoMerge.txt" if flag == 0 else "outputMerge.txt"
+file = open(file_name,"r")
 lines = file.readlines()
 lines.append("12")
 
@@ -26,9 +27,7 @@ for a in lines:
     else:
         curr.append([float(a[0]),float(a[1])])
 
-# polygon = [[15, 16], [13, 8], [9, 9], [4, 9],[0,8],[-5,5], [0,2], [2,-2], [6,-4], [10,-5], [15,-3], [17,0], [15,2], [10,2],[7,3], [10,5]]
 convex_polygons = temp
-print(temp)
 fig, ax = plt.subplots()
 
 def getCentroid(a):
@@ -51,18 +50,9 @@ for i, polygon in enumerate(convex_polygons):
     label=f'Face {i}'
     ax.annotate(label,xy=getCentroid(convex_polygons[i]))
     plt.gca().set_aspect("auto")
-    # plt.text(x_coords, y_coords, "rectangle", fontsize = 4)
     plt.draw()
-    #plt.annotate("Rectangle", (x_coords, y_coords), color='black', weight='bold', fontsize=10, ha='center', va='center')
-
-    # label=f'Face {i}'
-    # plt.annotate(label, # this is the text
-    #              (x_coords,y_coords), # these are the coordinates to position the label
-    #              textcoords="", # how to position the text
-    #              xytext=(0,0.1), # distance from text to points (x,y)
-    #              ha='center')
     plt.pause(0.01)
-    sleep(0.1)
+    sleep(DELAY)
 
 
 

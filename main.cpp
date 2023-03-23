@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <fstream>
 #include <time.h>
-
+#include <iomanip>
 #include "DCEL.h"
 
 using namespace std;
@@ -281,13 +281,13 @@ class PolygonDecomp
 
     void PrintPolygons(fstream &fp)
     {
-
+        cout<<"Writing Polygon\n";
         fp << dcel.faces.size() << endl;
         
         for(auto &face:dcel.faces)
         {
             // cout<<face<<":";
-            // dcel.Traverse(face, fp);
+            dcel.Traverse(face, fp);
             // dcel.TraverseFace(face);
         }
     }
@@ -302,9 +302,9 @@ void println(vector<Vertex*> & v)
 
 }
 
-int main()
+int main(int argc,char** argv)
 {
-
+    int c = atoi(argv[1]);
     int n;
     ifstream fp;
     fp.open("ArtificialInput.txt");
@@ -313,6 +313,7 @@ int main()
 
     fstream fp2("outputNoMerge.txt", fstream::trunc | fstream::out);
     fstream fp1("outputMerge.txt", fstream::trunc | fstream::out);
+    fstream fp3("times.txt", fstream::trunc | fstream::out);
 
     for(int i=0; i<n; i++)
     {
@@ -329,17 +330,20 @@ int main()
     p.Decompose(verts[0]);
     end = clock();
 
-    cout << "Decomp Time: " << double(end - start)/double(CLOCKS_PER_SEC) << endl;
+    cout << "Decomp Time: " << std::fixed<<double(end - start)/double(CLOCKS_PER_SEC) << endl;
+    fp3<<std::fixed<<double(end - start)/double(CLOCKS_PER_SEC)<<endl;
 
+    if(c == 1)
     p.PrintPolygons(fp1);
 
     start = clock();
     p.MergePolygons();
     end = clock();
 
-    cout << "Merge Time: " << double(end - start)/double(CLOCKS_PER_SEC) << endl;
+    cout << "Merge Time: " << std::fixed<<double(end - start)/double(CLOCKS_PER_SEC) << endl;
+    fp3<<std::fixed<<double(end - start)/double(CLOCKS_PER_SEC);
 
-
+    if(c == 1)
     p.PrintPolygons(fp2);
 }
 
