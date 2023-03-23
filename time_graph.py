@@ -1,16 +1,47 @@
-import sys
-import matplotlib 
-import os 
+import matplotlib.pyplot as plt
+import subprocess 
+import pandas as pd
+import os
+from polygenerator import (
+    random_polygon,
+)
 
-c = list(10*x for x in range(1,10)) + list(100*x for x in range(1,8))
-c = [700]
+c = list(10*x for x in range(1,10)) + list(100*x for x in range(1,3))
+def show(dict):
+    print("N : Decomp time,Merge Time,Total")
+    for t in c:
+        print(str(t)+" : "+str(dict[t][0])+","+str(dict[t][1])+","+str(dict[t][2]))
+y1,y2 = [],[]
 dict = {}
 for i in c:
     print(i)
-    os.system("python3 generate.py "+str(i))
+    polygon = random_polygon(num_points=i)
+    print("done")
+    with open("ArtificialInput.txt","w") as f:
+        f.write(str(len(polygon))+ '\n')
+
+        polygon.reverse()
+        
+        for coord in polygon:
+            f.write(str(coord[0])+ ' ' +str(coord[1]) + '\n')
     os.system("./a.out 0")
     with open("times.txt") as f:
         a = float(f.readline())
         b = float(f.readline())
-        dict[i] = {a,b,a+b}
-print(dict)
+        dict[i] = [a,b,a+b]
+        
+        y1.append(a)
+        y2.append(b)
+df = pd.DataFrame(dict).T
+df[0].plot(label="Decomp Time")
+df[1].plot(label="Merge Time")
+plt.figure(1)
+plt.title("Variation of Time Taken")
+plt.ylabel("Time(s)")
+plt.xlabel("Number of vertices")
+plt.figure(2)
+df[1].plot(color='orange',label="Merge Time")
+plt.title("Variation of Time Taken")
+plt.ylabel("Time(s)")
+plt.show()
+show(dict)
