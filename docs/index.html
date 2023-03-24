@@ -155,7 +155,7 @@
                             point lie on the same side of every line. This is done in O(n) time.
                             <br>
                             Thus, at worst for every edge we might need to go through all notches and check if they are inside the current polygon, and since the time complexity of the latter if O(n) the total time complexity of the decomposition algorithm is O(n<sup>2</sup>*r*p) as we can only add/remove an edge once for each potential sub-polygon. If however we can find whether a given point is inside the polygon or not in O(1) time then the complexity becomes O(n*p*r).
-                            <h3 class="text-2xl italic underline mt-8 ml-8">Time Complexity : O(n<sup>2</sup>*r*p)</h3>
+                            <h3 class="text-2xl mt-8 ml-8"><u>Time Complexity</u> : <b>O(n<sup>2</sup>*r*p)</b></h3>
                         </p>
                     </div>
                     <br>
@@ -168,7 +168,7 @@
                             the time complexity will be O(d*X) where d is the number
                             of diagonals. And since X can be O(n), the effective complexity becomes O(d*n). This clearly highlights the output sensitivity of the whole algorithm.
                         </p>
-                        <h3 class="text-2xl italic underline mt-8 ml-8">Time Complexity : O(d*n)</h3>
+                        <h3 class="text-2xl mt-8 ml-8"><u>Time Complexity</u> : <b>O(n*d)</b></h3>
                     </div>
                 </div>
 
