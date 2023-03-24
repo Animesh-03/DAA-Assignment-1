@@ -32,6 +32,7 @@ def plot_polygon1(polygon, out_file_name):
     plt.close()
     
     
+random.seed(7)
 polygon = random_polygon(num_points=int(sys.argv[1]))
     
 with open("ArtificialInput.txt","w") as f:
