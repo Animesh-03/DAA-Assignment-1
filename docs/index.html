@@ -73,7 +73,7 @@
                         <br />
                         <p>
                             Given a vertex, you can find all the edges originating from it as well as those incident on
-                            it. This functionality enables backward traversal of the
+                            it. This functionality enables both forwards and backward traversal of the
                             polygon in O(N) time.
                         </p>
                         <br />
@@ -84,11 +84,10 @@
                         </p>
                         <br />
                         <p>
-                            Given a face, you can find the half-edges belonging to that face by searching through all
-                            the edges in the polygon.
+                            Given a face, you can find the half-edges belonging to that face.
                             Once a half-edge associated with the face is found, the polygon can be traversed by going
-                            through the "next" edges in that face which
-                            is obtainable in O(1) time.
+                            through the "next" edges in that face
+                            Both of these are obtainable in O(1) time.
                         </p>
 
                     </div>
@@ -98,23 +97,22 @@
                     <h2 class="text-4xl mb-6">Decomposition Algorithm</h2>
                     <div class="text-xl">
                         <ol class="list-decimal ml-8">
+                            <li>Store all the notches in a list (a notch is found by calculating cross product of three consecutive vertices).</li>
                             <li>Pick a random vertex as the initial vertex from the given polygon.</li>
                             <li>
-                                Keep traversing the polygon from starting from the initial vertex in clockwise direction
-                                until a notch is found.
-                            </li>
-                            <li>
-                                If the next vertex is a notch, then connect the initial vertex and the current vertex.
+                                Keep traversing the polygon from the initial vertex in clockwise direction
+                                until either a notch is found or the next vertex makes more than 180° with the first vertex.
                             </li>
                             <li> 
                                 If there is a notch inside the polygon obtained then keep going back through the vertices until there is no notch contained in it.
                             </li>
-                            <li>Store the new edge in a separate list called "diagonals" which is to be used in the
+                            <li>If there are only two vertices in the list at this point perform no action.</li>
+                            <li>Store the new edge (between the first and the last vertex) in a separate list called "diagonals" which is to be used in the
                                 merging process.
                             </li>
                             <li>Also update the edge information in the DCEL.</li>
                             <li>Assign the next vertex as the initial vertex and repeat Steps 2 through 6.</li>
-                            <li>The decomposed polygon will be available in the DCEL.</li>
+                            <li>The decomposed polygons will be available in the DCEL.</li>
                         </ol>
                     </div>
                 </div>
@@ -141,9 +139,8 @@
                         <p class="text-lg">
                             The DCEL data structure facilitates each vertex to have the information of all its edges and
                             each edge to have the information about its vertices and faces.
-                            So, traversal is possible in O(N) time, where N is the number of vertices in the polygon.
                             <br>
-                            The algorithm (MP1 in the paper) is essentially an output-sensitive algorithm, since its
+                            The algorithm (MP1 in the paper) is an output-sensitive algorithm, since its
                             time complexity depends on both the input size (number of vertices of polygon)
                             as well as the ouput size (number of convex sub-polygons or faces the polygon is decomposed
                             into).
@@ -151,13 +148,14 @@
                             Since no new vertex is added in the process, the number of vertices remains the same,
                             equal to the number of edges in the initial polygon. Let that be 'n'.
                             <br>
-                            Depending on the shape of the polygon, the number of notches differs. Let that for the
-                            given intial polygon be 'r'.
+                            Depending on the shape of the polygon, the number of notches and the number of sub-polygons differs. Let that be 'r' and 'p' respectively for the
+                            given polygon.
                             <br/>
                             The process to check whether a point is inside a polygon is obtained by calculating the centroid and then checking if the centroid and the
                             point lie on the same side of every line. This is done in O(n) time.
                             <br>
-                            Thus, it is evident that the time complexity of the decomposition algorithm is O(n<sup>2</sup>*r).
+                            Thus, at worst for every edge we might need to go through all notches and check if they are inside the current polygon, and since the time complexity of the latter if O(n) the total time complexity of the decomposition algorithm is O(n<sup>2</sup>*r*p) as we can only add/remove an edge once for each potential sub-polygon. If however we can find whether a given point is inside the polygon or not in O(1) time then the complexity becomes O(n*p*r).
+                            <h3 class="text-2xl italic underline mt-8 ml-8">Time Complexity : O(n<sup>2</sup>*r*p)</h3>
                         </p>
                     </div>
                     <br>
@@ -167,9 +165,10 @@
                             Since each diagonal is traversed exactly once, and each traversal consists of visiting X
                             vertices, where X is the distance between the
                             source and destination vertices of the diagonal (half edge) when the diagonal is removed,
-                            the time complexity will be O(D*X) where D is the number
-                            of diagonals. This clearly highlights the output sensitivity of the whole algorithm.
+                            the time complexity will be O(d*X) where d is the number
+                            of diagonals. And since X can be O(n), the effective complexity becomes O(d*n). This clearly highlights the output sensitivity of the whole algorithm.
                         </p>
+                        <h3 class="text-2xl italic underline mt-8 ml-8">Time Complexity : O(d*n)</h3>
                     </div>
                 </div>
 
@@ -197,20 +196,7 @@
         <div id="outputs" class="frames my-8">
             <h1 class="text-7xl mb-8">Outputs</h1>
             <div class="flex flex-col justify-center">
-                <div class="flex flex-col justify-center mb-8">
-                    <div class="flex justify-center mb-8 w-full">
-                        <img width="300px" height="300px" class="m-auto" src="images/s10.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s50.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s100.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s200.png">
-                    </div>
-                    <div class="flex justify-around mb-8 w-full">
-                        <label>n = 10, t1 = 154, t2 = 11</label>
-                        <label>n = 50, t1 = 4490, t2 = 71</label>
-                        <label>n = 100, t1 = 16425, t2 = 95</label>
-                        <label>n = 200, t1 = 53975, t2 = 266</label>
-                    </div>
-                </div>
+                
                 <div class="flex flex-col justify-center mb-20 card">
                     <div class="flex justify-center mb-8 w-full">
                         <img width="300px" height="300px" class="m-auto" src="images/r1.png">
@@ -283,8 +269,9 @@
                 </div>
 
                 <div class="flex flex-col justify-center m-4">
-                    <h2 class="text-7xl mb-8">Time Analysis</h1>
-                        <div class="flex justify-center">
+                    <h1 class="text-7xl mb-8">Time Analysis</h1>
+                    <p class="text-center mb-2">Table</p>
+                        <div class="flex items-center justify-center flex-col ">
                             <table class="table-auto border-spacing-2 border-collapse border border-slate-500 w-6/12">
                                 <thead>
                                     <tr>
@@ -430,11 +417,14 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                    <p class="text-center mt-20">Merge & Decomposition Time Graphs</p>
                             <div class="w-full flex justify-around graph-img">
                                 <img src="images/merge.jpeg">
                                 <img src="images/total.jpeg">
                             </div>
                         </div>
+                    <div class="footer"></div>
                 </div>
             </div>
         </div>
