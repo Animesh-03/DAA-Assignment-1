@@ -6,6 +6,16 @@
 #include <iomanip>
 #include "DCEL.h"
 
+//author@vibhu
+
+/*
+    Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+                   Aditha Venkata Animesh - 2020A7PS0193H
+                   Manan Mayur Popat - 2020A7PS0029H
+                   Divyan Goyal - 2020A7PS0042H
+*/
+
+
 using namespace std;
 
 #define THRESH -0.00001

@@ -6,7 +6,11 @@ from polygenerator import (
     random_star_shaped_polygon,
     random_convex_polygon,
 )
-    
+
+    # Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+    #                Aditha Venkata Animesh - 2020A7PS0193H
+    #                Manan Mayur Popat - 2020A7PS0029H
+    #                Divyan Goyal - 2020A7PS0042H
     
 def plot_polygon(polygon, out_file_name):
     plt.figure()

@@ -1,11 +1,13 @@
-# -*- coding: utf-8 -*-
-"""Polygon_Decomp
-"""
 
 from time import sleep
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
 import sys
+
+    # Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+    #                Aditha Venkata Animesh - 2020A7PS0193H
+    #                Manan Mayur Popat - 2020A7PS0029H
+    #                Divyan Goyal - 2020A7PS0042H
 
 DELAY = float(sys.argv[2])
 

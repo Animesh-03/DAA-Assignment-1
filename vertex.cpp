@@ -1,6 +1,13 @@
 #include<algorithm>
 #include "vertex.h"
 
+/*
+    Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+                   Aditha Venkata Animesh - 2020A7PS0193H
+                   Manan Mayur Popat - 2020A7PS0029H
+                   Divyan Goyal - 2020A7PS0042H
+*/
+
 Vertex::Vertex(double _x, double _y)
 {
     // Assign the coords

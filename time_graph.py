@@ -6,6 +6,11 @@ from polygenerator import (
     random_polygon,
 )
 
+    # Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+    #                Aditha Venkata Animesh - 2020A7PS0193H
+    #                Manan Mayur Popat - 2020A7PS0029H
+    #                Divyan Goyal - 2020A7PS0042H
+
 c = list(range(20,400,50))
 def show(dict):
     print("N : Decomp time,Merge Time,Total")

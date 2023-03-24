@@ -1,5 +1,11 @@
 #include "halfEdge.h"
 
+/*
+    Team Members : Vibhum Raj Tripathi - 2020A7PS0247H
+                   Aditha Venkata Animesh - 2020A7PS0193H
+                   Manan Mayur Popat - 2020A7PS0029H
+                   Divyan Goyal - 2020A7PS0042H
+*/
 
 HalfEdge::HalfEdge(Vertex* _start, Vertex* _end, int _face)
 {
