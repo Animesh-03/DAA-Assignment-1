@@ -329,8 +329,8 @@ int main(int argc,char** argv)
     fp >> n;
     vector<Vertex*> verts;
 
-    fstream fp2("outputNoMerge.txt", fstream::trunc | fstream::out);
-    fstream fp1("outputMerge.txt", fstream::trunc | fstream::out);
+    fstream fp2("outputMerge.txt", fstream::trunc | fstream::out);
+    fstream fp1("outputNoMerge.txt", fstream::trunc | fstream::out);
     fstream fp3("times.txt", fstream::trunc | fstream::out);
 
     for(int i=0; i<n; i++)

@@ -6,8 +6,7 @@ from polygenerator import (
     random_polygon,
 )
 
-c = list(range(20,1000,50))
-c = [1000]
+c = list(range(20,400,50))
 def show(dict):
     print("N : Decomp time,Merge Time,Total")
     for t in c:

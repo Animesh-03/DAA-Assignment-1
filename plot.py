@@ -29,7 +29,7 @@ for a in lines:
 
 convex_polygons = temp
 fig, ax = plt.subplots()
-
+print(temp)
 def getCentroid(a):
     sumx,sumy = 0,0
     n = len(a)
@@ -43,16 +43,16 @@ def getCentroid(a):
 for i, polygon in enumerate(convex_polygons):
     x_coords = [v[0] for v in polygon]
     y_coords = [v[1] for v in polygon]
-    
-    
-    ax.fill(x_coords, y_coords, alpha=0.4, label=f'')
+    # if(i == 1):
+    #     continue
+    ax.fill(x_coords, y_coords, alpha=0.4, label=f'Face {i}')
     ax.plot(x_coords, y_coords, color='navy')
-    label=f''
+    label=f'Face {i}'
     ax.annotate(label,xy=getCentroid(convex_polygons[i]))
     plt.gca().set_aspect("auto")
     plt.draw()
-    # plt.pause(0.01)
-    # sleep(DELAY)
+    plt.pause(0.01)
+    sleep(DELAY)
 
 
 
