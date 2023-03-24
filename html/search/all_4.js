@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['face_10',['face',['../classHalfEdge.html#a4d3b7cb45a7874574885e3c69794a40e',1,'HalfEdge']]],
-  ['faces_11',['faces',['../classDCEL.html#a80d851289d2fa2fa27098aa7cf124b51',1,'DCEL']]],
-  ['findhalfedgewithface_12',['FindHalfEdgeWithFace',['../classDCEL.html#ab4004513328b4a3d5d494ced9a931442',1,'DCEL::FindHalfEdgeWithFace()'],['../classVertex.html#ac3512e63736a85802abc6458b7324302',1,'Vertex::FindHalfEdgeWithFace()']]]
+  ['edges_12',['edges',['../classDCEL.html#a82dd413825a24b8975e3e901971f2629',1,'DCEL']]],
+  ['end_13',['end',['../classHalfEdge.html#a8377d3ef023920e171f60154944165ac',1,'HalfEdge']]]
 ];

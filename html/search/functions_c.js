@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vertex_74',['Vertex',['../classVertex.html#a43509c8726a40a26a003f4c1a478c097',1,'Vertex']]],
-  ['vertexinside_75',['VertexInside',['../classPolygonDecomp.html#a12db3d0fcfba629937f038e13c26f937',1,'PolygonDecomp']]]
+  ['traverse_85',['Traverse',['../classDCEL.html#a13e6cad29c2e9f9d03693c660b780912',1,'DCEL']]],
+  ['traverseface_86',['TraverseFace',['../classDCEL.html#ac4443007e21a9bdb6df5195eb2f34530',1,'DCEL']]]
 ];

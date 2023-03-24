@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['crossproduct_1',['CrossProduct',['../classPolygonDecomp.html#a19f13394a923780066c2dcbffe60b8e2',1,'PolygonDecomp']]]
+  ['b_2',['B',['../classLine.html#a7a13b98ce0c45bf19583210211992337',1,'Line']]]
 ];

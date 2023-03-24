@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_89',['y',['../classVertex.html#a7563c83da86f4a0831144bc823fec2b0',1,'Vertex']]]
+  ['twin_102',['twin',['../classHalfEdge.html#a37e7696a7131767a0c76e45ed69be4c5',1,'HalfEdge']]]
 ];

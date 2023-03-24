@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['mergeface_23',['MergeFace',['../classDCEL.html#a7c7dcb35ff231eac6901557c1677076c',1,'DCEL']]],
-  ['mergepolygons_24',['MergePolygons',['../classPolygonDecomp.html#a3c25e2bf4566c9b79e5c117b5a9076ea',1,'PolygonDecomp']]]
+  ['line_26',['Line',['../classLine.html',1,'Line'],['../classLine.html#a38086fd76fb9ca54c85ece547dcbf105',1,'Line::Line()']]]
 ];

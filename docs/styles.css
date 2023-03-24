@@ -132,3 +132,16 @@ nav .nav-options {
     font-variant: small-caps;
     border-bottom: 1px solid aqua;
 }
+
+.graph-img {
+    padding-top: 4rem;
+}
+
+.graph-img img {
+    width: 400px;
+    height: 400px;
+}
+
+.graph-img img:hover {
+    transform: scale(1.2);
+}

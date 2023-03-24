@@ -10,11 +10,20 @@ using namespace std;
 
 #define THRESH -0.00001
 
+/// @brief Represents a Line object
 class Line
 {
     public:
-    double A,B,C;
+    /// @brief Coefficent in Ax+By+C = 0;
+    double A;
+    /// @brief Coefficent in Ax+By+C = 0;
+    double B;
+    /// @brief Coefficent in Ax+By+C = 0;
+    double C;
 
+    /// @brief Constructs a line given given two vertices a and b
+    /// @param a Vertex through which the line passes through
+    /// @param b Another Vertex through which the line passes through
     Line(Vertex* a,Vertex* b)
     {
         if(a->x == b->x)
@@ -38,21 +47,30 @@ class Line
         }
     }
 
+    /// @brief Prints the coefficients of the line
     void printLine()
     {
         cout<<"Line : ("<<A<<","<<B<<","<<C<<")\n";
     }
-
+    /// @brief Determines if a point lies on the line
+    /// @param a Point to be determined
+    /// @return Value on substituting the point on line equation
     double satisfy(Vertex* a)
     {
         return A*a->x+B*a->y+C;
     }
-
+    /// @brief Determines if both points lie on the line
+    /// @param a Point to be determined
+    /// @param b Point to be determined
+    /// @return Multiplied vlaue of both substituted equations
     double satisfyAB(Vertex* a,Vertex* b)
     {
         return satisfy(a)*satisfy(b);
     }
-
+    /// @brief Determines if the points lie on opposite sides of the line
+    /// @param a Point 1
+    /// @param b Point 2
+    /// @return True if they lie on different side else false
     bool differentSide(Vertex* a,Vertex* b)
     {
         return satisfy(a)*satisfy(b) < THRESH;

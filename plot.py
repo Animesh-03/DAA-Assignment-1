@@ -45,14 +45,14 @@ for i, polygon in enumerate(convex_polygons):
     y_coords = [v[1] for v in polygon]
     
     
-    ax.fill(x_coords, y_coords, alpha=0.4, label=f'Face {i}')
+    ax.fill(x_coords, y_coords, alpha=0.4, label=f'')
     ax.plot(x_coords, y_coords, color='navy')
-    label=f'Face {i}'
+    label=f''
     ax.annotate(label,xy=getCentroid(convex_polygons[i]))
     plt.gca().set_aspect("auto")
     plt.draw()
-    plt.pause(0.01)
-    sleep(DELAY)
+    # plt.pause(0.01)
+    # sleep(DELAY)
 
 
 
