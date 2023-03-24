@@ -26,11 +26,11 @@
         </div>
     </nav>
 
-        <div class="content">
-            <div id="members" class="members pb-8">
-                <h1 class="text-7xl mt-20">CS F364 : Design & Analysis Of Algorithms</h1>
-                <br>
-                <h3 class="text-6xl">Assignment - 1</h2>
+    <div class="content">
+        <div id="members" class="members pb-8">
+            <h1 class="text-7xl mt-20">CS F364 : Design & Analysis Of Algorithms</h1>
+            <br>
+            <h3 class="text-6xl">Assignment - 1</h2>
                 <br>
                 <div class="member-list text-3xl mt-8">
                     <h4 class="text-2xl"><u>Group Members</u></h4>
@@ -99,12 +99,19 @@
                     <div class="text-xl">
                         <ol class="list-decimal ml-8">
                             <li>Pick a random vertex as the initial vertex from the given polygon.</li>
-                            <li>Keep traversing the polygon from starting from the initial vertex in clockwise direction
-                                until a notch is found.</li>
-                            <li>If the next vertex is a notch, then connect the initial vertex and the current vertex.
+                            <li>
+                                Keep traversing the polygon from starting from the initial vertex in clockwise direction
+                                until a notch is found.
+                            </li>
+                            <li>
+                                If the next vertex is a notch, then connect the initial vertex and the current vertex.
+                            </li>
+                            <li> 
+                                If there is a notch inside the polygon obtained then keep going back through the vertices until there is no notch contained in it.
                             </li>
                             <li>Store the new edge in a separate list called "diagonals" which is to be used in the
-                                merging process.</li>
+                                merging process.
+                            </li>
                             <li>Also update the edge information in the DCEL.</li>
                             <li>Assign the next vertex as the initial vertex and repeat Steps 2 through 6.</li>
                             <li>The decomposed polygon will be available in the DCEL.</li>
@@ -135,15 +142,22 @@
                             The DCEL data structure facilitates each vertex to have the information of all its edges and
                             each edge to have the information about its vertices and faces.
                             So, traversal is possible in O(N) time, where N is the number of vertices in the polygon.
-                            <br>The algorithm (MP1 in the paper) is essentially an output-sensitive algorithm, since its
+                            <br>
+                            The algorithm (MP1 in the paper) is essentially an output-sensitive algorithm, since its
                             time complexity depends on both the input size (number of vertices of polygon)
                             as well as the ouput size (number of convex sub-polygons or faces the polygon is decomposed
                             into).
-                            <br>Since no new vertex is added in the process, the number of vertices remains the same,
+                            <br>
+                            Since no new vertex is added in the process, the number of vertices remains the same,
                             equal to the number of edges in the initial polygon. Let that be 'n'.
-                            <br>Depending on the shape of the polygon, the number of notches differs. Let that for the
+                            <br>
+                            Depending on the shape of the polygon, the number of notches differs. Let that for the
                             given intial polygon be 'r'.
-                            <br>Thus, it is evident that the time complexity of the decomposition algorithm is O(n*r).
+                            <br/>
+                            The process to check whether a point is inside a polygon is obtained by calculating the centroid and then checking if the centroid and the
+                            point lie on the same side of every line. This is done in O(n) time.
+                            <br>
+                            Thus, it is evident that the time complexity of the decomposition algorithm is O(n<sup>2</sup>*r).
                         </p>
                     </div>
                     <br>
@@ -183,8 +197,21 @@
         <div id="outputs" class="frames my-8">
             <h1 class="text-7xl mb-8">Outputs</h1>
             <div class="flex flex-col justify-center">
-
                 <div class="flex flex-col justify-center mb-8">
+                    <div class="flex justify-center mb-8 w-full">
+                        <img width="300px" height="300px" class="m-auto" src="images/s10.png">
+                        <img width="300px" height="300px" class="m-auto" src="images/s50.png">
+                        <img width="300px" height="300px" class="m-auto" src="images/s100.png">
+                        <img width="300px" height="300px" class="m-auto" src="images/s200.png">
+                    </div>
+                    <div class="flex justify-around mb-8 w-full">
+                        <label>n = 10, t1 = 154, t2 = 11</label>
+                        <label>n = 50, t1 = 4490, t2 = 71</label>
+                        <label>n = 100, t1 = 16425, t2 = 95</label>
+                        <label>n = 200, t1 = 53975, t2 = 266</label>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center mb-20 card">
                     <div class="flex justify-center mb-8 w-full">
                         <img width="300px" height="300px" class="m-auto" src="images/r1.png">
                         <img width="300px" height="300px" class="m-auto" src="images/r2.png">
@@ -197,7 +224,7 @@
                 </div>
                 <br>
                 <br>
-                <div class="flex flex-col justify-center mb-8">
+                <div class="flex flex-col justify-center mb-20 card">
                     <div class="flex justify-center mb-8 w-full">
                         <img width="250px" height="300px" class="m-auto" src="images/d1.png">
                         <img width="250px" height="300px" class="m-auto" src="images/d2.png">
@@ -216,243 +243,201 @@
                 </div>
                 <br>
                 <br>
-                <div class="flex flex-col justify-center mb-8">
-                    <div class="flex justify-center mb-8 w-full">
-                        <img width="300px" height="300px" class="m-auto" src="images/s10.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s50.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s100.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s200.png">
-                    </div>
-                    <div class="flex justify-around mb-8 w-full">
-                        <label>n = 10, t1 = 154, t2 = 11</label>
-                        <label>n = 50, t1 = 4490, t2 = 71</label>
-                        <label>n = 100, t1 = 16425, t2 = 95</label>
-                        <label>n = 200, t1 = 53975, t2 = 266</label>
-                    </div>
-                </div>
-                        <div class="flex flex-col justify-center mb-20 card">
-                            <div class="flex justify-center mb-8 w-full">
-                                <img width="300px" height="300px" class="m-auto" src="images/r1.png">
-                                <img width="300px" height="300px" class="m-auto" src="images/r2.png">   
-                            </div>
-                            <div class="flex justify-around mb-8 w-full">
-                                <label>Initial Polygon</label>
-                                <label>Convex Decomposition</label>
-                            </div>
-                            <p class="text-xl m-auto">A polygon with 30 vertices decomposed into 18 faces.</p>
+                <div class="card mb-20">
+                    <div class="flex flex-col justify-center mb-20">
+                        <div class="flex justify-center mb-8 w-full">
+                            <img width="300px" height="300px" class="m-auto" src="images/s10.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s50.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s100.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s200.png">
                         </div>
-                        <br>
-                        <br>
-                        <div class="flex flex-col justify-center mb-20 card">
-                            <div class="flex justify-center mb-8 w-full">
-                                <img width="250px" height="300px" class="m-auto" src="images/d1.png">
-                                <img width="250px" height="300px" class="m-auto" src="images/d2.png">
-                                <img width="250px" height="300px" class="m-auto" src="images/d3.png">   
-                                <img width="250px" height="300px" class="m-auto" src="images/d4.png">  
-                                <img width="250px" height="300px" class="m-auto" src="images/d5.png">     
-                            </div>
-                            <div class="flex justify-around mb-8 w-full">
-                                <label>1</label>
-                                <label>2</label>
-                                <label>3</label>
-                                <label>4</label>
-                                <label>5</label>
-                            </div>
-                            <p class="text-xl m-auto">Examples of some beautiful polygon decompositions.</p>
+                        <div class="flex justify-around mb-8 w-full">
+                            <label>n = 10, t1 = 154, t2 = 11</label>
+                            <label>n = 50, t1 = 4490, t2 = 71</label>
+                            <label>n = 100, t1 = 16425, t2 = 95</label>
+                            <label>n = 200, t1 = 53975, t2 = 266</label>
                         </div>
-                        <br>
-                        <br>
-                        <div class = "card mb-20">
-                        <div class="flex flex-col justify-center mb-20">
-                            <div class="flex justify-center mb-8 w-full">
-                                <img width="300px" height="300px" class="m-auto" src="images/s10.png">
-                                <img width="300px" height="300px" class="m-auto" src="images/s50.png">
-                                <img width="300px" height="300px" class="m-auto" src="images/s100.png">   
-                                <img width="300px" height="300px" class="m-auto" src="images/s200.png">       
-                            </div>
-                            <div class="flex justify-around mb-8 w-full">
-                                <label>n = 10, t1 = 154, t2 = 11</label>
-                                <label>n = 50, t1 = 4490, t2 = 71</label>
-                                <label>n = 100, t1 = 16425, t2 = 95</label>
-                                <label>n = 200, t1 = 53975, t2 = 266</label>
-                            </div>
+                    </div>
+
+                    <div class="flex flex-col justify-center mb-8">
+
+                        <div class="flex justify-center mb-8 w-full">
+                            <img width="300px" height="300px" class="m-auto" src="images/s200.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s500.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s750.png">
+                            <img width="300px" height="300px" class="m-auto" src="images/s1000.png">
                         </div>
 
-                <div class="flex flex-col justify-center mb-8">
+                        <div class="flex justify-around mb-8 w-full">
+                            <label>n = 500, t1 = 308701, t2 = 329</label>
+                            <label>n = 500, t1 = 308701, t2 = 329</label>
+                            <label>n = 750, t1 = 598746, t2 = 443</label>
+                            <label>n = 1000, t1 = 1056518, t2 = 601</label>
+                        </div>
 
-                    <div class="flex justify-center mb-8 w-full">
-                        <img width="300px" height="300px" class="m-auto" src="images/s200.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s500.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s750.png">
-                        <img width="300px" height="300px" class="m-auto" src="images/s1000.png">
+                        <p class="text-xl m-auto">Number of vertices &emsp; VS &emsp; Execution time (in microseconds).
+                        </p>
+                        <p class="text-xl m-auto">t1 : Decomposition Time, t2 : Merging Time.</p>
+
                     </div>
-
-                    <div class="flex justify-around mb-8 w-full">
-                        <label>n = 500, t1 = 308701, t2 = 329</label>
-                        <label>n = 500, t1 = 308701, t2 = 329</label>
-                        <label>n = 750, t1 = 598746, t2 = 443</label>
-                        <label>n = 1000, t1 = 1056518, t2 = 601</label>
-                    </div>
-
-                    <p class="text-xl m-auto">Number of vertices &emsp; VS &emsp; Execution time (in microseconds).</p>
-                    <p class="text-xl m-auto">t1 : Decomposition Time, t2 : Merging Time.</p>
-
                 </div>
-            </div>
 
-            <div class="flex flex-col justify-center m-4">
-                <h2 class="text-7xl mb-8">Time Analysis</h1>
-                <div class="flex justify-center">
-                    <table class="table-auto border-spacing-2 border-collapse border border-slate-500 w-6/12">
-                        <thead>
-                            <tr>
-                                <th class="bg-cyan-900 border border-slate-500">Number Of Vertices N</th>
-                                <th class="bg-cyan-900 border border-slate-500">Decomposition Time</th>
-                                <th class="bg-cyan-900 border border-slate-500">Merge Time</th>
-                                <th class="bg-cyan-900 border border-slate-500">Total Time</th>
-                            </tr>
-                        </thead>
-    
-                        <tbody>
-                            <tr>
-                                <td class="border border-slate-500">10</td>
-                                <td class="border border-slate-500">0.000131</td>
-                                <td class="border border-slate-500">0.000009</td>
-                                <td class="border border-slate-500">0.000140</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">20</td>
-                                <td class="border border-slate-500">0.000303</td>
-                                <td class="border border-slate-500">0.000010</td>
-                                <td class="border border-slate-500">0.000313</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">30</td>
-                                <td class="border border-slate-500">0.001685</td>
-                                <td class="border border-slate-500">0.000032</td>
-                                <td class="border border-slate-500">0.001717</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">40</td>
-                                <td class="border border-slate-500">0.002792</td>
-                                <td class="border border-slate-500">0.000055</td>
-                                <td class="border border-slate-500">0.002847</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">50</td>
-                                <td class="border border-slate-500">0.005813</td>
-                                <td class="border border-slate-500">0.000063</td>
-                                <td class="border border-slate-500">0.005896</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">60</td>
-                                <td class="border border-slate-500">0.005813</td>
-                                <td class="border border-slate-500">0.000083</td>
-                                <td class="border border-slate-500">0.005896</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">70</td>
-                                <td class="border border-slate-500">0.008856</td>
-                                <td class="border border-slate-500">0.000083</td>
-                                <td class="border border-slate-500">0.008937</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">80</td>
-                                <td class="border border-slate-500">0.009393</td>
-                                <td class="border border-slate-500">0.000093</td>
-                                <td class="border border-slate-500">0.009486</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">90</td>
-                                <td class="border border-slate-500">0.015800</td>
-                                <td class="border border-slate-500">0.000112</td>
-                                <td class="border border-slate-500">0.015912</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">100</td>
-                                <td class="border border-slate-500">0.018025</td>
-                                <td class="border border-slate-500">0.000168</td>
-                                <td class="border border-slate-500">0.018193</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">200</td>
-                                <td class="border border-slate-500">0.058800</td>
-                                <td class="border border-slate-500">0.000139</td>
-                                <td class="border border-slate-500">0.058939</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">300</td>
-                                <td class="border border-slate-500">0.081149</td>
-                                <td class="border border-slate-500">0.000181</td>
-                                <td class="border border-slate-500">0.081330</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">400</td>
-                                <td class="border border-slate-500">0.131482</td>
-                                <td class="border border-slate-500">0.000280</td>
-                                <td class="border border-slate-500">0.131562</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">500</td>
-                                <td class="border border-slate-500">0.208572</td>
-                                <td class="border border-slate-500">0.000227</td>
-                                <td class="border border-slate-500">0.208799</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">600</td>
-                                <td class="border border-slate-500">0.325352</td>
-                                <td class="border border-slate-500">0.000312</td>
-                                <td class="border border-slate-500">0.325664</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">700</td>
-                                <td class="border border-slate-500">0.530867</td>
-                                <td class="border border-slate-500">0.000411</td>
-                                <td class="border border-slate-500">0.531225</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">800</td>
-                                <td class="border border-slate-500">0.555663</td>
-                                <td class="border border-slate-500">0.000418</td>
-                                <td class="border border-slate-500">0.556074</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">900</td>
-                                <td class="border border-slate-500">0.693756</td>
-                                <td class="border border-slate-500">0.001076</td>
-                                <td class="border border-slate-500">0.694932</td>
-                            </tr>
-    
-                            <tr>
-                                <td class="border border-slate-500">1000</td>
-                                <td class="border border-slate-500">1.027800</td>
-                                <td class="border border-slate-500">0.000540</td>
-                                <td class="border border-slate-500">1.028340</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h1>Graph Here</h1>
+                <div class="flex flex-col justify-center m-4">
+                    <h2 class="text-7xl mb-8">Time Analysis</h1>
+                        <div class="flex justify-center">
+                            <table class="table-auto border-spacing-2 border-collapse border border-slate-500 w-6/12">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-cyan-900 border border-slate-500">Number Of Vertices N</th>
+                                        <th class="bg-cyan-900 border border-slate-500">Decomposition Time</th>
+                                        <th class="bg-cyan-900 border border-slate-500">Merge Time</th>
+                                        <th class="bg-cyan-900 border border-slate-500">Total Time</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-slate-500">10</td>
+                                        <td class="border border-slate-500">0.000131</td>
+                                        <td class="border border-slate-500">0.000009</td>
+                                        <td class="border border-slate-500">0.000140</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">20</td>
+                                        <td class="border border-slate-500">0.000303</td>
+                                        <td class="border border-slate-500">0.000010</td>
+                                        <td class="border border-slate-500">0.000313</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">30</td>
+                                        <td class="border border-slate-500">0.001685</td>
+                                        <td class="border border-slate-500">0.000032</td>
+                                        <td class="border border-slate-500">0.001717</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">40</td>
+                                        <td class="border border-slate-500">0.002792</td>
+                                        <td class="border border-slate-500">0.000055</td>
+                                        <td class="border border-slate-500">0.002847</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">50</td>
+                                        <td class="border border-slate-500">0.005813</td>
+                                        <td class="border border-slate-500">0.000063</td>
+                                        <td class="border border-slate-500">0.005896</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">60</td>
+                                        <td class="border border-slate-500">0.005813</td>
+                                        <td class="border border-slate-500">0.000083</td>
+                                        <td class="border border-slate-500">0.005896</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">70</td>
+                                        <td class="border border-slate-500">0.008856</td>
+                                        <td class="border border-slate-500">0.000083</td>
+                                        <td class="border border-slate-500">0.008937</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">80</td>
+                                        <td class="border border-slate-500">0.009393</td>
+                                        <td class="border border-slate-500">0.000093</td>
+                                        <td class="border border-slate-500">0.009486</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">90</td>
+                                        <td class="border border-slate-500">0.015800</td>
+                                        <td class="border border-slate-500">0.000112</td>
+                                        <td class="border border-slate-500">0.015912</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">100</td>
+                                        <td class="border border-slate-500">0.018025</td>
+                                        <td class="border border-slate-500">0.000168</td>
+                                        <td class="border border-slate-500">0.018193</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">200</td>
+                                        <td class="border border-slate-500">0.058800</td>
+                                        <td class="border border-slate-500">0.000139</td>
+                                        <td class="border border-slate-500">0.058939</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">300</td>
+                                        <td class="border border-slate-500">0.081149</td>
+                                        <td class="border border-slate-500">0.000181</td>
+                                        <td class="border border-slate-500">0.081330</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">400</td>
+                                        <td class="border border-slate-500">0.131482</td>
+                                        <td class="border border-slate-500">0.000280</td>
+                                        <td class="border border-slate-500">0.131562</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">500</td>
+                                        <td class="border border-slate-500">0.208572</td>
+                                        <td class="border border-slate-500">0.000227</td>
+                                        <td class="border border-slate-500">0.208799</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">600</td>
+                                        <td class="border border-slate-500">0.325352</td>
+                                        <td class="border border-slate-500">0.000312</td>
+                                        <td class="border border-slate-500">0.325664</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">700</td>
+                                        <td class="border border-slate-500">0.530867</td>
+                                        <td class="border border-slate-500">0.000411</td>
+                                        <td class="border border-slate-500">0.531225</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">800</td>
+                                        <td class="border border-slate-500">0.555663</td>
+                                        <td class="border border-slate-500">0.000418</td>
+                                        <td class="border border-slate-500">0.556074</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">900</td>
+                                        <td class="border border-slate-500">0.693756</td>
+                                        <td class="border border-slate-500">0.001076</td>
+                                        <td class="border border-slate-500">0.694932</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border border-slate-500">1000</td>
+                                        <td class="border border-slate-500">1.027800</td>
+                                        <td class="border border-slate-500">0.000540</td>
+                                        <td class="border border-slate-500">1.028340</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="w-full flex justify-around graph-img">
+                                <img src="images/merge.jpeg">
+                                <img src="images/total.jpeg">
+                            </div>
+                        </div>
                 </div>
-            </div>
             </div>
         </div>
+</body>
 
-    </body>
 </html>
