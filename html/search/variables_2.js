@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['face_80',['face',['../classHalfEdge.html#a4d3b7cb45a7874574885e3c69794a40e',1,'HalfEdge']]],
-  ['faces_81',['faces',['../classDCEL.html#a80d851289d2fa2fa27098aa7cf124b51',1,'DCEL']]]
+  ['c_91',['C',['../classLine.html#a3fd4f0922ea9a5b38f43dbe41daa5fe7',1,'Line']]]
 ];

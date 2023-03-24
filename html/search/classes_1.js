@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['halfedge_44',['HalfEdge',['../classHalfEdge.html',1,'']]]
+  ['halfedge_52',['HalfEdge',['../classHalfEdge.html',1,'']]]
 ];

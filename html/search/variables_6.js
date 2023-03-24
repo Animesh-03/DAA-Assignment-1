@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['start_85',['start',['../classHalfEdge.html#ad81306763f65832cafb591a734231008',1,'HalfEdge']]]
+  ['halfedges_98',['halfEdges',['../classVertex.html#a31f653fb3fef55149b04760331a009a3',1,'Vertex']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['next_65',['Next',['../classHalfEdge.html#ab5e211a2266433d697eee02c3f71ee05',1,'HalfEdge::Next()'],['../classHalfEdge.html#a79d07843dcbef52bcd875ea29f294e4b',1,'HalfEdge::Next(int _face)']]],
-  ['next_66',['next',['../classVertex.html#a4ab09a475c7d718cce57c8d21c4c75e6',1,'Vertex']]]
+  ['mergeface_73',['MergeFace',['../classDCEL.html#a7c7dcb35ff231eac6901557c1677076c',1,'DCEL']]],
+  ['mergepolygons_74',['MergePolygons',['../classPolygonDecomp.html#a3c25e2bf4566c9b79e5c117b5a9076ea',1,'PolygonDecomp']]]
 ];

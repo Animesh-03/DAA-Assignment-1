@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['notches_83',['notches',['../classPolygonDecomp.html#ac22e510c16b3d4eb1225c91a905658d8',1,'PolygonDecomp']]]
+  ['edges_94',['edges',['../classDCEL.html#a82dd413825a24b8975e3e901971f2629',1,'DCEL']]],
+  ['end_95',['end',['../classHalfEdge.html#a8377d3ef023920e171f60154944165ac',1,'HalfEdge']]]
 ];

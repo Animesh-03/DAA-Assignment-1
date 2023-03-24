@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['insiderect_20',['InsideRect',['../classPolygonDecomp.html#a63f4294b5dda0178ed29589c6589d30d',1,'PolygonDecomp']]],
-  ['isnotch_21',['IsNotch',['../classPolygonDecomp.html#a7c68f50df9cfcb70adac3a7aec40c350',1,'PolygonDecomp']]]
+  ['halfedge_22',['HalfEdge',['../classHalfEdge.html',1,'HalfEdge'],['../classHalfEdge.html#a890d72226e53fdcb428154224cc08c7e',1,'HalfEdge::HalfEdge()']]],
+  ['halfedges_23',['halfEdges',['../classVertex.html#a31f653fb3fef55149b04760331a009a3',1,'Vertex']]]
 ];
